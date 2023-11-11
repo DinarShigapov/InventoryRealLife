@@ -90,12 +90,18 @@ namespace ClientInventoryRL.Pages
             {
                 App.DB.SaveChanges();
                 MessageBox.Show("Пользователь успешно сохранен");
+                NavigationService.Navigate(new AuthorizationPage());
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 return;
             }
+        }
+
+        private void BBackPage_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }

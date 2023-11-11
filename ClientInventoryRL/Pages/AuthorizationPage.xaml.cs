@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ClientInventoryRL.Windows;
 using ClientInventoryRL.Model;
 
 namespace ClientInventoryRL.Pages
@@ -46,7 +45,7 @@ namespace ClientInventoryRL.Pages
                 return;
             }
 
-            MessageBox.Show($"Nice {selectedUser.LastName}");
+            NavigationService.Navigate(new MenuClientPage());
         }
 
         private void BSignUp_Click(object sender, RoutedEventArgs e)
@@ -56,8 +55,7 @@ namespace ClientInventoryRL.Pages
 
         private void TBForgotPassword_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            ForgotPasswordWindow passwordWindow = new ForgotPasswordWindow();
-            passwordWindow.ShowDialog();
+            NavigationService.Navigate(new ForgotPasswordPage());
         }
     }
 }
