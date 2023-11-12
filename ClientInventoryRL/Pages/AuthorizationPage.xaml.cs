@@ -45,6 +45,7 @@ namespace ClientInventoryRL.Pages
                 return;
             }
 
+
             NavigationService.Navigate(new MenuClientPage());
         }
 
