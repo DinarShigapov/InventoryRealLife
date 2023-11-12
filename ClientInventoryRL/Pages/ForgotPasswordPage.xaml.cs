@@ -1,7 +1,10 @@
-﻿using ClientInventoryRL.Service;
+﻿using ClientInventoryRL.Services;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -14,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace ClientInventoryRL.Pages
 {
@@ -32,75 +36,32 @@ namespace ClientInventoryRL.Pages
             Email = "dinarhertz@gmail.com";
         }
 
+        public string ReadResource()
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+            string resourceName = assembly.GetManifestResourceNames().Single(str => str.EndsWith("TemplateEmail.txt"));
 
+            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                return reader.ReadToEnd();
+            }
+        }
 
         private void BGetCode_Click(object sender, RoutedEventArgs e)
         {
+
             if (!Regex.IsMatch(Email, @"^[\w_.]+@([\w][-\w]?[\w]+\.)+[A-Za-z]{2,4}$"))
             {
                 MessageBox.Show("Некорректный email");
                 return;
             }
 
-
-
             SPCode.Visibility = Visibility.Visible;
             GeneratedCode = rnd.Next(100000, 999999).ToString();
             MailSendService mailSend = new MailSendService();
             string userName = "Flason";
-            string body = $@"<tbody>
-                                <tr>
-                                    <td align=""center"" valign=""top"">
-                                        <table border=""0"" cellpadding=""0"" cellspacing=""0"" height=""90"" width=""100%"" style=""background-color:#fff;background-image:none;background-repeat:repeat;background-position:top left"">
-                                            <tr>
-                                                <td align=""center"" valign=""middle"">
-                                                    <div style=""text-align:left;padding:20px 0 20px 0;font-size:30px;line-height:1.5;width:80%;color:#9147ff;text-align:center;font-family: monospace;font-weight: bold;"">
-                                                        INVENTORY RL
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align=""center"" valign=""top"">
-                                        <table border=""0"" cellpadding=""0"" cellspacing=""0"" height=""1"" width=""100%"">
-                                            <tr>
-                                                <td align=""center"" valign=""middle"" style=""background-color:#eeeeee"" width=""249""></td>
-                                                <td align=""center"" valign=""middle"" style=""background-color:#9147ff"" width=""102""></td>
-                                                <td align=""center"" valign=""middle"" style=""background-color:#eeeeee"" width=""249""></td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                                <tr>  
-                                    <td align=""center"" valign=""middle"">
-                                        <div style=""text-align:left;padding:20px 0 20px 0;font-size:14px;line-height:1.5;width:80%;color:#9147ff;text-align:center"">
-                                            Здравствуйте, {userName}!
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align=""center"" valign=""middle"">
-                                        <div style=""text-align:left;padding:0 0 20px 0;font-size:14px;line-height:1.5;width:80%"">
-                                            Чтобы восстановить пароль, введите следующий код:
-                                        </div>
-                                        <div style=""background:#faf9fa;border:1px solid #dad8de;text-align:center;padding:5px;margin:0 0 5px 0;font-size:24px;line-height:1.5;width:80%"">
-                                            {GeneratedCode}
-                                        </div>
-                                        <div style=""text-align:center;padding:0 0 20px 0;font-size:12px;font-style:italic;font-weight:bold;line-height:1.5;width:80%"">
-                                            Обратите внимание, что срок действия этого кода истекает после закрытия приложения
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align=""center"" valign=""middle"">
-                                        <div style=""text-align:left;padding:0 0 20px 0;font-size:14px;line-height:1.5;width:80%"">
-                                            Спасибо,<br>Служба поддержки InventoryRealLife
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>";
+            string body = $@"{ReadResource().Replace("{name}", userName).Replace("{code}", GeneratedCode)}";
 
             var mail = mailSend.CreateMail("", "flason.smtp@gmail.com", $"{Email}", "text", body);
             mailSend.SendMail("smtp.gmail.com", 587, "flason.smtp@gmail.com", "sbwowwurankglfjp", mail);

@@ -6,7 +6,7 @@ using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClientInventoryRL.Service
+namespace ClientInventoryRL.Services
 {
     public class MailSendService
     {
@@ -14,16 +14,18 @@ namespace ClientInventoryRL.Service
         {
             var from = new MailAddress(emailFrom, name);
             var to = new MailAddress(emailTo);
-            var mail = new MailMessage(from, to);
-            mail.Subject = subject;
-            mail.Body = body;
-            mail.IsBodyHtml = true;
+            var mail = new MailMessage(from, to) 
+            {
+                Subject = subject,
+                Body = body,
+                IsBodyHtml = true
+            };
             return mail;
         }
 
-        public void SendMail(string host, int smptPort, string emailFrom, string pass, MailMessage mail)
+        public void SendMail(string host, int smtpPort, string emailFrom, string pass, MailMessage mail)
         {
-            SmtpClient smtp = new SmtpClient(host, smptPort);
+            SmtpClient smtp = new SmtpClient(host, smtpPort);
             smtp.Credentials = new NetworkCredential(emailFrom, pass);
             smtp.EnableSsl = true;
             smtp.Send(mail);
