@@ -26,6 +26,7 @@ namespace ClientInventoryRL.Pages
     /// </summary>
     public partial class ForgotPasswordPage : Page
     {
+        public string FullName { get; set; }
         public string Email { get; set; }
         public string GeneratedCode { get; set; }
         public Random rnd = new Random();
@@ -36,21 +37,8 @@ namespace ClientInventoryRL.Pages
             Email = "dinarhertz@gmail.com";
         }
 
-        public string ReadResource()
-        {
-            var assembly = Assembly.GetExecutingAssembly();
-            string resourceName = assembly.GetManifestResourceNames().Single(str => str.EndsWith("TemplateEmail.txt"));
-
-            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
-            using (StreamReader reader = new StreamReader(stream))
-            {
-                return reader.ReadToEnd();
-            }
-        }
-
         private void BGetCode_Click(object sender, RoutedEventArgs e)
         {
-
             if (!Regex.IsMatch(Email, @"^[\w_.]+@([\w][-\w]?[\w]+\.)+[A-Za-z]{2,4}$"))
             {
                 MessageBox.Show("Некорректный email");
@@ -58,12 +46,17 @@ namespace ClientInventoryRL.Pages
             }
 
             SPCode.Visibility = Visibility.Visible;
-            GeneratedCode = rnd.Next(100000, 999999).ToString();
-            MailSendService mailSend = new MailSendService();
-            string userName = "Flason";
-            string body = $@"{ReadResource().Replace("{name}", userName).Replace("{code}", GeneratedCode)}";
 
-            var mail = mailSend.CreateMail("", "flason.smtp@gmail.com", $"{Email}", "text", body);
+            MailSendService mailSend = new MailSendService();
+            GeneratedCode = rnd.Next(100000, 999999).ToString();
+            string userName = "Flason";
+            string body = $@"{ReadResource()
+                                .Replace("{name}", userName)
+                                .Replace("{code}", GeneratedCode)}";
+
+            var mail = mailSend
+                .CreateMail("", "flason.smtp@gmail.com", $"{Email}", "text", body);
+
             mailSend.SendMail("smtp.gmail.com", 587, "flason.smtp@gmail.com", "sbwowwurankglfjp", mail);
         }
 
@@ -93,6 +86,19 @@ namespace ClientInventoryRL.Pages
             }
         }
 
+        #region Method
+        public string ReadResource()
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+            string resourceName = assembly.GetManifestResourceNames().Single(str => str.EndsWith("TemplateEmail.txt"));
+
+            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                return reader.ReadToEnd();
+            }
+        }
+
         private string GenerateLoginPassword()
         {
             int length = 8;
@@ -106,5 +112,7 @@ namespace ClientInventoryRL.Pages
             }
             return res.ToString();
         }
+
+        #endregion
     }
 }
