@@ -5,21 +5,21 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="caeb721d2ffb40f09466f8361f296033" Name="Diagram1">
-        <EntityTypeShape EntityType="InventoryRealDataBaseModel.Admin" Width="1.5" PointX="5.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryRealDataBaseModel.Inventory" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryRealDataBaseModel.InventoryModifiers" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryRealDataBaseModel.InventorySlotModifiers" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryRealDataBaseModel.Item" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryRealDataBaseModel.Slot" Width="1.5" PointX="8.25" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryRealDataBaseModel.TypeModifires" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="InventoryRealDataBaseModel.User" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
-        <AssociationConnector Association="InventoryRealDataBaseModel.FK_Inventory_User" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryRealDataBaseModel.FK_InventoryModifiers_Inventory" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryRealDataBaseModel.FK_Slot_Inventory" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryRealDataBaseModel.FK_InventoryModifiers_InventorySlotModifiers" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryRealDataBaseModel.FK_InventorySlotModifiers_TypeModifires" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryRealDataBaseModel.FK_Slot_InventorySlotModifiers" ManuallyRouted="false" />
-        <AssociationConnector Association="InventoryRealDataBaseModel.FK_Slot_Item" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="InventoryRealDataBaseModel.Admin" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="InventoryRealDataBaseModel.Inventory" Width="1.5" PointX="3" PointY="2.625" />
+        <EntityTypeShape EntityType="InventoryRealDataBaseModel.InventoryModifiers" Width="1.5" PointX="8.25" PointY="2.75" />
+        <EntityTypeShape EntityType="InventoryRealDataBaseModel.InventorySlotModifiers" Width="1.5" PointX="6" PointY="7.5" />
+        <EntityTypeShape EntityType="InventoryRealDataBaseModel.Item" Width="1.5" PointX="3" PointY="10.75" />
+        <EntityTypeShape EntityType="InventoryRealDataBaseModel.Slot" Width="1.5" PointX="5.25" PointY="2.5" />
+        <EntityTypeShape EntityType="InventoryRealDataBaseModel.TypeModifires" Width="1.5" PointX="3.75" PointY="8" />
+        <EntityTypeShape EntityType="InventoryRealDataBaseModel.User" Width="1.5" PointX="0.75" PointY="2.25" />
+        <AssociationConnector Association="InventoryRealDataBaseModel.FK_Inventory_User" />
+        <AssociationConnector Association="InventoryRealDataBaseModel.FK_InventoryModifiers_Inventory" />
+        <AssociationConnector Association="InventoryRealDataBaseModel.FK_Slot_Inventory" />
+        <AssociationConnector Association="InventoryRealDataBaseModel.FK_InventoryModifiers_InventorySlotModifiers" />
+        <AssociationConnector Association="InventoryRealDataBaseModel.FK_InventorySlotModifiers_TypeModifires" />
+        <AssociationConnector Association="InventoryRealDataBaseModel.FK_Slot_InventorySlotModifiers" />
+        <AssociationConnector Association="InventoryRealDataBaseModel.FK_Slot_Item" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

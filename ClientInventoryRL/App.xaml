@@ -9,7 +9,14 @@
                 <ResourceDictionary Source="Resources/IconsUI/BackpackIcon.xaml"/>
                 <ResourceDictionary Source="Resources/IconsUI/WeightIcon.xaml"/>
                 <ResourceDictionary Source="Resources/IconsUI/SlotsIcon.xaml"/>
+                <ResourceDictionary Source="Resources/IconsUI/ClothesIcon.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+
+            
+            <Style TargetType="TextBlock" x:Key="TextBlockFont">
+                <Setter Property="FontFamily" Value="Resources/Fonts/#JetBrains Mono" />
+            </Style>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

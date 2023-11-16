@@ -1,4 +1,5 @@
 ﻿using ClientInventoryRL.Model;
+using ClientInventoryRL.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,5 +61,27 @@ namespace ClientInventoryRL.Pages
             App.DB.SaveChanges();
         }
 
+        private void MIAddNewItem_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedSlot = (sender as MenuItem).DataContext as Slot;
+            if (selectedSlot == null)
+            {
+                return;
+            }
+
+            _ = new ItemWindow(selectedSlot).ShowDialog();
+            LV.Items.Refresh();
+        }
+
+        private void MIDeleteItem_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedSlot = (sender as MenuItem).DataContext as Slot;
+            if (selectedSlot == null)
+            {
+                return;
+            }
+            selectedSlot.Item = null;
+            LV.Items.Refresh();
+        }
     }
 }

@@ -45,6 +45,14 @@ namespace ClientInventoryRL.Services
                 return;
             }
 
+            if (dropInfo.TargetItem != null)
+            {
+                if ((dropInfo.TargetItem as Slot).Item != null)
+                {
+                    return;
+                }
+            }
+
             dropInfo.NotHandled = true;
             dropInfo.Effects = DragDropEffects.Move;
         }

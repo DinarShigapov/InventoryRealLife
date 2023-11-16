@@ -86,20 +86,20 @@
                     <Button Content="as" Click="Button_Click"/>
                 </StackPanel>
                 <ListBox ItemsSource="{Binding CurrentInventory.CollectionSlots}"
-                        Grid.Row="2"
-                        x:Name="LV" 
-                        d:ItemsSource="{d:SampleData ItemCount=20}"
-                        Width="428"
-                        MaxWidth="428"
-                        BorderThickness="0"
-                        Background="Transparent"
-                        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                        VerticalAlignment="Top"
-                        dd:DragDrop.IsDropTarget="True"
-                        dd:DragDrop.IsDragSource="True"
-                        dd:DragDrop.DropHandler="{x:Static ui:DragDropTarget.Instance}"
-                        dd:DragDrop.UseDefaultDragAdorner="True"
-                        dd:DragDrop.UseDefaultEffectDataTemplate="True">
+                         Grid.Row="2"
+                         x:Name="LV" 
+                         d:ItemsSource="{d:SampleData ItemCount=20}"
+                         Width="428"
+                         MaxWidth="428"
+                         BorderThickness="0"
+                         Background="Transparent"
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                         VerticalAlignment="Top"
+                         dd:DragDrop.IsDropTarget="True"
+                         dd:DragDrop.IsDragSource="True"
+                         dd:DragDrop.DropHandler="{x:Static ui:DragDropTarget.Instance}"
+                         dd:DragDrop.UseDefaultDragAdorner="True"
+                         dd:DragDrop.UseDefaultEffectDataTemplate="True">
                     <ListBox.Resources>
                         <AlternationConverter x:Key="AltCnvKey">
                             <SolidColorBrush Color="#31342E"/>
@@ -168,12 +168,12 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Border Background="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type GroupItem}}, Path=(ItemsControl.AlternationIndex), Converter={StaticResource AltCnvKey}}" 
-                                Opacity=".72"
-                                Width="70"
-                                Height="70"
-                                BorderThickness="2"
-                                CornerRadius="3"
-                                MouseEnter="Border_MouseEnter">
+                                    Opacity=".72"
+                                    Width="70"
+                                    Height="70"
+                                    BorderThickness="2"
+                                    CornerRadius="3"
+                                    MouseEnter="Border_MouseEnter">
                                 <Border.Resources>
                                     <Style TargetType="Border">
                                         <Setter Property="Background"
@@ -193,10 +193,19 @@
                                 <Image Source="{Binding Item.MainImage}"
                                     Margin="5"
                                     RenderOptions.BitmapScalingMode="Fant"/>
+                                <Border.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Добавить"
+                                                  x:Name="MIAddNewItem"
+                                                  Click="MIAddNewItem_Click"/>
+                                        <MenuItem Header="Удалить"
+                                                  x:Name="MIDeleteItem"
+                                                  Click="MIDeleteItem_Click"/>
+                                    </ContextMenu>
+                                </Border.ContextMenu>
                             </Border>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
-
                 </ListBox>
             </Grid>
             <Grid Grid.Column="2"
@@ -230,11 +239,12 @@
                             <ColumnDefinition/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="{Binding Id}"
+                        <TextBlock Text="{Binding Id, StringFormat='{}{0:d3}'}"
                                    VerticalAlignment="Center"
                                    Foreground="#E3E1DE"
                                    Padding="7 4 5 4"
-                                   FontSize="25"/>
+                                   FontSize="25"
+                                   Style="{StaticResource TextBlockFont}"/>
                         <Rectangle Width="1"
                                 Grid.Column="1"
                                 Margin="2 5 6 5"
@@ -242,14 +252,16 @@
                         <StackPanel Grid.Column="2"
                                 VerticalAlignment="Center">
                             <TextBlock Text="{Binding FullNameUser}"
-                                    Foreground="#E3E1DE"
-                                    FontSize="16"
-                                    VerticalAlignment="Bottom"/>
+                                       Foreground="#E3E1DE"
+                                       FontSize="16"
+                                       VerticalAlignment="Bottom"
+                                       Style="{StaticResource TextBlockFont}"/>
                             <TextBlock Text="{Binding Login, StringFormat='({0})'}"
-                                    FontSize="10"
-                                    VerticalAlignment="Top"
-                                    Foreground="#E3E1DE"
-                                    Opacity="0.7"/>
+                                       FontSize="10"
+                                       VerticalAlignment="Top"
+                                       Foreground="#E3E1DE"
+                                       Opacity="0.7"
+                                       Style="{StaticResource TextBlockFont}"/>
                         </StackPanel>
                     </Grid>
                 </Border>
@@ -271,7 +283,7 @@
                         CornerRadius="2"
                         Width="150"
                         Height="100">
-                    <TextBlock Text="{Binding CurrentInventory.ClothesModifiers.Name}"
+                    <TextBlock Text="{Binding CurrentInventory.BackpackModifiers.Name}"
                                VerticalAlignment="Center"
                                HorizontalAlignment="Center"/>
                 </Border>
@@ -301,20 +313,24 @@
                     CornerRadius="2">
                     <Grid>
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition/>
+                            <ColumnDefinition Width="20"/>
                             <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <StackPanel VerticalAlignment="Center"
                                     Orientation="Horizontal"
-                                    Margin="10 0">
+                                    Margin="10 0"
+                                    Grid.Column="1">
                             <Image Source="{StaticResource WeightDrawingImage}"
                                    Width="25"
                                    Height="25"
                                    VerticalAlignment="Center"/>
                             <TextBlock VerticalAlignment="Center"
                                        Foreground="#E3E1DE"
-                                       Margin="5 0 0 0">
+                                       Margin="5 0 0 0"
+                                       Style="{StaticResource TextBlockFont}">
                                 <TextBlock.Text>
                                     <MultiBinding StringFormat="{}{0}/{1}">
                                         <Binding Path="CurrentInventory.CurrentWeightInventory" />
@@ -326,18 +342,19 @@
                         <StackPanel VerticalAlignment="Center"
                                     Margin="10 4"
                                     Orientation="Horizontal"
-                                    Grid.Column="2">
+                                    Grid.Column="3">
                             <Image Source="{StaticResource SlotsDrawingImage}"
                                    Width="18"
                                    Height="18"
                                    VerticalAlignment="Center"/>
                             <TextBlock VerticalAlignment="Center"
                                        Foreground="#E3E1DE"
-                                       Margin="5 0 0 0">
+                                       Margin="5 0 0 0"
+                                       Style="{StaticResource TextBlockFont}">
                                 <TextBlock.Text>
                                     <MultiBinding StringFormat="{}{0}/{1}">
-                                        <Binding Path="CurrentInventory.CurrentWeightInventory" />
-                                        <Binding Path="CurrentInventory.MaxWeightInventory" />
+                                        <Binding Path="CurrentInventory.CurrentSlotInventory" />
+                                        <Binding Path="CurrentInventory.MaxSlotInventory" />
                                     </MultiBinding>
                                 </TextBlock.Text>
                             </TextBlock>

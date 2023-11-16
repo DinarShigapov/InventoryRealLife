@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <DrawingImage x:Key="ClothesIconDrawingImage">
+        <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 V92 H112 V0 H0 Z">
+                <GeometryDrawing Geometry="F1 M112,92z M0,0z M96.3583,37.3L86.6916,27.875 86.6916,91.9166 25.3083,91.9166 25.3083,27.875 15.6416,37.3 0.416626,22.075 20.2333,0.083313 43.9166,0.083313C44.6667,2.70925 46.2519,5.01936 48.4321,6.664 50.6123,8.30864 53.269,9.19829 56,9.19829 58.7309,9.19829 61.3876,8.30864 63.5678,6.664 65.748,5.01936 67.3332,2.70925 68.0833,0.083313L91.7666,0.083313 111.583,22.075 96.3583,37.3z">
+                    <GeometryDrawing.Brush>
+                        <SolidColorBrush Color="#FFE3E1DE" Opacity="0.14" />
+                    </GeometryDrawing.Brush>
+                </GeometryDrawing>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+</ResourceDictionary>

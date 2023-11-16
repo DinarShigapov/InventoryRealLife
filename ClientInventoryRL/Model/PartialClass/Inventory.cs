@@ -3,19 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
+using ClientInventoryRL.Model.PartialClass;
 
 namespace ClientInventoryRL.Model
 {
     public partial class Inventory
     {
 
-        enum ModType 
-        {
-            Clothes = 1,
-            Backpack = 2,
-            Bag = 3
-        }
 
 
         private void AddSingltonModifires(InventorySlotModifiers value) 
@@ -32,11 +28,11 @@ namespace ClientInventoryRL.Model
                 }
             }
         }
-
+    
         public InventorySlotModifiers ClothesModifiers 
         {
             get => InventoryModifiers.FirstOrDefault(
-                x => x.InventorySlotModifiers.TypeModifiresId == (int)ModType.Clothes).InventorySlotModifiers;
+                x => x.InventorySlotModifiers.TypeModifiresId == (int)ModifiresType.Clothes).InventorySlotModifiers;
             set 
             {
                 AddSingltonModifires(value);
@@ -46,7 +42,7 @@ namespace ClientInventoryRL.Model
         public InventorySlotModifiers BackpackModifiers
         {
             get => InventoryModifiers.FirstOrDefault(
-                x => x.InventorySlotModifiers.TypeModifiresId == (int)ModType.Backpack).InventorySlotModifiers;
+                x => x.InventorySlotModifiers.TypeModifiresId == (int)ModifiresType.Backpack).InventorySlotModifiers;
             set
             {
                 AddSingltonModifires(value);
@@ -59,6 +55,31 @@ namespace ClientInventoryRL.Model
             set
             {
                 AddSingltonModifires(value);
+            }
+        }
+
+
+        public double CurrentSlotInventory
+        {
+            get
+            {
+                if (Slot.Count > 0)
+                {
+                    return MaxSlotInventory - Slot.Where(z => z.Item == null).Count();
+                }
+                return 0;
+            }
+        }
+
+        public double MaxSlotInventory
+        {
+            get
+            {
+                if (Slot.Count > 0)
+                {
+                    return Slot.Count();
+                }
+                return 0;
             }
         }
 

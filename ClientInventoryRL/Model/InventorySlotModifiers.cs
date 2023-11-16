@@ -26,6 +26,7 @@ namespace ClientInventoryRL.Model
         public int TypeModifiresId { get; set; }
         public int Slots { get; set; }
         public float MaxCapacity { get; set; }
+        public byte[] MainImage { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<InventoryModifiers> InventoryModifiers { get; set; }
