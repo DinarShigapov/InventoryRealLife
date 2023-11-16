@@ -230,11 +230,11 @@
                             <ColumnDefinition/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="001"
-                                VerticalAlignment="Center"
-                                Foreground="#E3E1DE"
-                                Padding="7 4 5 4"
-                                FontSize="25"/>
+                        <TextBlock Text="{Binding Id}"
+                                   VerticalAlignment="Center"
+                                   Foreground="#E3E1DE"
+                                   Padding="7 4 5 4"
+                                   FontSize="25"/>
                         <Rectangle Width="1"
                                 Grid.Column="1"
                                 Margin="2 5 6 5"
@@ -306,8 +306,15 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <StackPanel VerticalAlignment="Center"
-                                    Margin="10 4">
-                            <TextBlock>
+                                    Orientation="Horizontal"
+                                    Margin="10 0">
+                            <Image Source="{StaticResource WeightDrawingImage}"
+                                   Width="25"
+                                   Height="25"
+                                   VerticalAlignment="Center"/>
+                            <TextBlock VerticalAlignment="Center"
+                                       Foreground="#E3E1DE"
+                                       Margin="5 0 0 0">
                                 <TextBlock.Text>
                                     <MultiBinding StringFormat="{}{0}/{1}">
                                         <Binding Path="CurrentInventory.CurrentWeightInventory" />
@@ -318,8 +325,15 @@
                         </StackPanel>
                         <StackPanel VerticalAlignment="Center"
                                     Margin="10 4"
+                                    Orientation="Horizontal"
                                     Grid.Column="2">
-                            <TextBlock>
+                            <Image Source="{StaticResource SlotsDrawingImage}"
+                                   Width="18"
+                                   Height="18"
+                                   VerticalAlignment="Center"/>
+                            <TextBlock VerticalAlignment="Center"
+                                       Foreground="#E3E1DE"
+                                       Margin="5 0 0 0">
                                 <TextBlock.Text>
                                     <MultiBinding StringFormat="{}{0}/{1}">
                                         <Binding Path="CurrentInventory.CurrentWeightInventory" />

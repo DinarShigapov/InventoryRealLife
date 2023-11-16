@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище InventoryRLDataBaseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище InventoryRealDataBaseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="Id" />
@@ -167,7 +167,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Хранилище InventoryRLDataBaseModelContainer">
+        <EntityContainer Name="Хранилище InventoryRealDataBaseModelContainer">
           <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InventoryModifiers" EntityType="Self.InventoryModifiers" Schema="dbo" store:Type="Tables" />
@@ -209,7 +209,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="InventoryRLDataBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="InventoryRealDataBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="Id" />
@@ -386,7 +386,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="InventoryRLDataBaseEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="InventoryRealDataBaseEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Admin" EntityType="Self.Admin" />
           <EntitySet Name="Inventory" EntityType="Self.Inventory" />
           <EntitySet Name="InventoryModifiers" EntityType="Self.InventoryModifiers" />
@@ -429,9 +429,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище InventoryRLDataBaseModelContainer" CdmEntityContainer="InventoryRLDataBaseEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище InventoryRealDataBaseModelContainer" CdmEntityContainer="InventoryRealDataBaseEntities">
           <EntitySetMapping Name="Admin">
-            <EntityTypeMapping TypeName="InventoryRLDataBaseModel.Admin">
+            <EntityTypeMapping TypeName="InventoryRealDataBaseModel.Admin">
               <MappingFragment StoreEntitySet="Admin">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
@@ -440,7 +440,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Inventory">
-            <EntityTypeMapping TypeName="InventoryRLDataBaseModel.Inventory">
+            <EntityTypeMapping TypeName="InventoryRealDataBaseModel.Inventory">
               <MappingFragment StoreEntitySet="Inventory">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -450,7 +450,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="InventoryModifiers">
-            <EntityTypeMapping TypeName="InventoryRLDataBaseModel.InventoryModifiers">
+            <EntityTypeMapping TypeName="InventoryRealDataBaseModel.InventoryModifiers">
               <MappingFragment StoreEntitySet="InventoryModifiers">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="InventoryId" ColumnName="InventoryId" />
@@ -460,7 +460,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="InventorySlotModifiers">
-            <EntityTypeMapping TypeName="InventoryRLDataBaseModel.InventorySlotModifiers">
+            <EntityTypeMapping TypeName="InventoryRealDataBaseModel.InventorySlotModifiers">
               <MappingFragment StoreEntitySet="InventorySlotModifiers">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -471,7 +471,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Item">
-            <EntityTypeMapping TypeName="InventoryRLDataBaseModel.Item">
+            <EntityTypeMapping TypeName="InventoryRealDataBaseModel.Item">
               <MappingFragment StoreEntitySet="Item">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -482,7 +482,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Slot">
-            <EntityTypeMapping TypeName="InventoryRLDataBaseModel.Slot">
+            <EntityTypeMapping TypeName="InventoryRealDataBaseModel.Slot">
               <MappingFragment StoreEntitySet="Slot">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ItemId" ColumnName="ItemId" />
@@ -493,7 +493,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TypeModifires">
-            <EntityTypeMapping TypeName="InventoryRLDataBaseModel.TypeModifires">
+            <EntityTypeMapping TypeName="InventoryRealDataBaseModel.TypeModifires">
               <MappingFragment StoreEntitySet="TypeModifires">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -501,7 +501,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="User">
-            <EntityTypeMapping TypeName="InventoryRLDataBaseModel.User">
+            <EntityTypeMapping TypeName="InventoryRealDataBaseModel.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
