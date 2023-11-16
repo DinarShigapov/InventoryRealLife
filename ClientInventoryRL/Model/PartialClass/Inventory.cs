@@ -12,8 +12,6 @@ namespace ClientInventoryRL.Model
     public partial class Inventory
     {
 
-
-
         private void AddSingltonModifires(InventorySlotModifiers value) 
         {
             if (value != null)
@@ -59,6 +57,51 @@ namespace ClientInventoryRL.Model
         }
 
 
+        public string WarningText 
+        {
+            get 
+            {
+                if (IsWarningWeight)
+                {
+                    return "Memento mori";
+                }
+                else
+                {
+                    return "Нормально";
+                }
+            }
+        }
+
+        public bool IsWarningWeight
+        {
+            get
+            {
+                if (CurrentWeightInventory > MaxWeightInventory)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public string ColorWarningWeight
+        {
+            get 
+            {
+                if (IsWarningWeight)
+                {
+                    return "#FFAB1111";
+                }
+                else
+                {
+                    return "#E3E1DE";
+                }
+            }
+        }
+
         public double CurrentSlotInventory
         {
             get
@@ -102,7 +145,7 @@ namespace ClientInventoryRL.Model
             {
                 if (InventoryModifiers.Count > 0)
                 {
-                    return InventoryModifiers.Sum(z => z.InventorySlotModifiers.MaxCapacity);
+                    return Math.Round(InventoryModifiers.Sum(z => z.InventorySlotModifiers.MaxCapacity * z.InventorySlotModifiers.Slots), 3);
                 }
                 return 0;
             }

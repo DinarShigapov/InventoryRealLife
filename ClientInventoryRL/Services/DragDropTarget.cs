@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using ClientInventoryRL.Model;
+using System.Windows.Media;
 
 namespace ClientInventoryRL.Services
 {
@@ -28,18 +29,80 @@ namespace ClientInventoryRL.Services
             }
         }
 
+        private T FindVisualChild<T>(DependencyObject parent) where T : DependencyObject
+        {
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
+            {
+                DependencyObject child = VisualTreeHelper.GetChild(parent, i);
+                if (child != null && child is T)
+                {
+                    return (T)child;
+                }
+                else
+                {
+                    T childOfChild = FindVisualChild<T>(child);
+                    if (childOfChild != null)
+                    {
+                        return childOfChild;
+                    }
+                }
+            }
+            return null;
+        }
+
         public void DragEnter(IDropInfo dropInfo)
         {
             
+
         }
+
+
 
         public void DragLeave(IDropInfo dropInfo)
         {
+            //if (element.Count > 0)
+            //{
+            //    foreach (var item in element)
+            //    {
+            //        if (item == dropInfo.VisualTargetItem)
+            //        {
+            //            continue;
+            //        }
 
+            //        var select = FindVisualChild<Border>(item);
+            //        select.BorderBrush = Brushes.Transparent;
+            //    }
+            //}
         }
+
+        List<UIElement> element = new List<UIElement>();
 
         public void DragOver(IDropInfo dropInfo)
         {
+            //if (dropInfo.TargetItem != null && dropInfo.Data != dropInfo.TargetItem)
+            //{
+            //    var select = FindVisualChild<Border>(dropInfo.VisualTargetItem);
+            //    select.BorderBrush = Brushes.Red;
+            //    element.Add(dropInfo.VisualTargetItem);
+            //}
+
+            //if (element.Count > 0)
+            //{
+            //    foreach (var item in element)
+            //    {
+            //        if (item == dropInfo.VisualTargetItem)
+            //        {
+            //            continue;
+            //        }
+
+            //        element.Remove(item);
+
+            //        var select = FindVisualChild<Border>(item);
+            //        select.BorderBrush = Brushes.Transparent;
+            //    }
+            //}
+
+
             if ((dropInfo.Data as Slot).Item == null)
             {
                 return;
@@ -65,6 +128,12 @@ namespace ClientInventoryRL.Services
                 {
                     if ((dropInfo.TargetItem as Slot).Item == null && dropInfo.TargetItem as Slot != dropInfo.Data as Slot)
                     {
+
+                        if ((dropInfo.Data as Slot).Item.Weight > (dropInfo.TargetItem as Slot).InventorySlotModifiers.MaxCapacity)
+                        {
+                            MessageBox.Show("Данный предмет превышает максимальный вес слота");
+                            return;
+                        }
 
                         Slot bufferSlot = dropInfo.Data as Slot;
                         (dropInfo.TargetItem as Slot).Item = bufferSlot.Item;

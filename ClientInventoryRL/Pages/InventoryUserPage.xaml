@@ -324,11 +324,11 @@
                                     Margin="10 0"
                                     Grid.Column="1">
                             <Image Source="{StaticResource WeightDrawingImage}"
-                                   Width="25"
-                                   Height="25"
+                                   Width="18"
+                                   Height="18"
                                    VerticalAlignment="Center"/>
                             <TextBlock VerticalAlignment="Center"
-                                       Foreground="#E3E1DE"
+                                       Foreground="{Binding CurrentInventory.ColorWarningWeight}"
                                        Margin="5 0 0 0"
                                        Style="{StaticResource TextBlockFont}">
                                 <TextBlock.Text>
@@ -364,7 +364,12 @@
                 <Border Background="#31342E"
                         Grid.Row="8"
                         CornerRadius="2">
-                    
+                    <TextBlock Text="{Binding CurrentInventory.WarningText}"
+                               Foreground="{Binding CurrentInventory.ColorWarningWeight}"
+                               Style="{StaticResource TextBlockFont}"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               FontSize="17"/>
                 </Border>
             </Grid>
         </Grid>

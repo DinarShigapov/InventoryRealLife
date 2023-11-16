@@ -70,7 +70,8 @@ namespace ClientInventoryRL.Pages
             }
 
             _ = new ItemWindow(selectedSlot).ShowDialog();
-            LV.Items.Refresh();
+            this.DataContext = null;
+            this.DataContext = App.LoggedUser;
         }
 
         private void MIDeleteItem_Click(object sender, RoutedEventArgs e)
@@ -81,7 +82,8 @@ namespace ClientInventoryRL.Pages
                 return;
             }
             selectedSlot.Item = null;
-            LV.Items.Refresh();
+            this.DataContext = null;
+            this.DataContext = App.LoggedUser;
         }
     }
 }

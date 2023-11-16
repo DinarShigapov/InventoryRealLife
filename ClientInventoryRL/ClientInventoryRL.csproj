@@ -144,47 +144,47 @@
     </Compile>
     <Compile Include="Converters\WidthConverter.cs" />
     <Compile Include="Model\Admin.cs">
-      <DependentUpon>Model12.tt</DependentUpon>
+      <DependentUpon>Model198.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Inventory.cs">
-      <DependentUpon>Model12.tt</DependentUpon>
+      <DependentUpon>Model198.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\InventoryModifiers.cs">
-      <DependentUpon>Model12.tt</DependentUpon>
+      <DependentUpon>Model198.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\InventorySlotModifiers.cs">
-      <DependentUpon>Model12.tt</DependentUpon>
+      <DependentUpon>Model198.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Item.cs">
-      <DependentUpon>Model12.tt</DependentUpon>
+      <DependentUpon>Model198.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Model12.Context.cs">
+    <Compile Include="Model\Model198.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model12.Context.tt</DependentUpon>
+      <DependentUpon>Model198.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Model12.cs">
+    <Compile Include="Model\Model198.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model12.tt</DependentUpon>
+      <DependentUpon>Model198.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Model12.Designer.cs">
+    <Compile Include="Model\Model198.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model12.edmx</DependentUpon>
+      <DependentUpon>Model198.edmx</DependentUpon>
     </Compile>
     <Compile Include="Model\PartialClass\Inventory.cs" />
     <Compile Include="Model\PartialClass\InventorySlotModifiers.cs" />
     <Compile Include="Model\PartialClass\ModifiresType.cs" />
     <Compile Include="Model\PartialClass\User.cs" />
     <Compile Include="Model\Slot.cs">
-      <DependentUpon>Model12.tt</DependentUpon>
+      <DependentUpon>Model198.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\TypeModifires.cs">
-      <DependentUpon>Model12.tt</DependentUpon>
+      <DependentUpon>Model198.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\User.cs">
-      <DependentUpon>Model12.tt</DependentUpon>
+      <DependentUpon>Model198.tt</DependentUpon>
     </Compile>
     <Compile Include="Pages\ForgotPasswordPage.xaml.cs">
       <DependentUpon>ForgotPasswordPage.xaml</DependentUpon>
@@ -233,12 +233,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model\Model12.edmx">
+    <EntityDeploy Include="Model\Model198.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model12.Designer.cs</LastGenOutput>
+      <LastGenOutput>Model198.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\Model12.edmx.diagram">
-      <DependentUpon>Model12.edmx</DependentUpon>
+    <None Include="Model\Model198.edmx.diagram">
+      <DependentUpon>Model198.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -259,17 +259,17 @@
   <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\background.png" />
-    <Content Include="Model\Model12.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model12.edmx</DependentUpon>
-      <LastGenOutput>Model12.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Model\Model12.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model12.edmx</DependentUpon>
-      <LastGenOutput>Model12.cs</LastGenOutput>
-    </Content>
     <Resource Include="Resources\IconsUI\ClothesIcons.png" />
+    <Content Include="Model\Model198.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model198.edmx</DependentUpon>
+      <LastGenOutput>Model198.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\Model198.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model198.edmx</DependentUpon>
+      <LastGenOutput>Model198.cs</LastGenOutput>
+    </Content>
     <Content Include="Resources\MouseEnterSound.wav" />
     <Resource Include="Resources\Waterbottle.png" />
   </ItemGroup>

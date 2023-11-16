@@ -36,6 +36,13 @@ namespace ClientInventoryRL.Windows
                 return;
             }
 
+            if (selectedItem.Weight > contextSlot.InventorySlotModifiers.MaxCapacity) 
+            {
+                MessageBox.Show("Данный предмет превышает максимальный вес слота");
+                return;
+
+            }
+
             contextSlot.Item = selectedItem;
 
             this.Close();
