@@ -39,14 +39,9 @@ namespace ClientInventoryRL.Pages
                 return;
             }
 
-            if (selectedUser.RoleId != 1)
-            {
-                MessageBox.Show("Данный пользователь не имеет прав в системе", "Авторизация", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
+            App.LoggedUser = selectedUser;
 
-
-            NavigationService.Navigate(new MenuClientPage());
+            NavigationService.Navigate(new InventoryUserPage());
         }
 
         private void BSignUp_Click(object sender, RoutedEventArgs e)

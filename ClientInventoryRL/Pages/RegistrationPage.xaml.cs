@@ -83,7 +83,6 @@ namespace ClientInventoryRL.Pages
                 return;
             }
 
-            contextUser.RoleId = 1;
             App.DB.User.Add(contextUser);
 
             try

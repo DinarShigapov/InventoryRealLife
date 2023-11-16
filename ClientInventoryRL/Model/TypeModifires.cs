@@ -12,18 +12,18 @@ namespace ClientInventoryRL.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Role
+    public partial class TypeModifires
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Role()
+        public TypeModifires()
         {
-            this.User = new HashSet<User>();
+            this.InventorySlotModifiers = new HashSet<InventorySlotModifiers>();
         }
     
         public int Id { get; set; }
-        public string RoleName { get; set; }
+        public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> User { get; set; }
+        public virtual ICollection<InventorySlotModifiers> InventorySlotModifiers { get; set; }
     }
 }

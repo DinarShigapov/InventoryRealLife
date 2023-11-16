@@ -1,0 +1,341 @@
+﻿<Page x:Class="ClientInventoryRL.Pages.InventoryUserPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:dd="urn:gong-wpf-dragdrop"
+      xmlns:local="clr-namespace:ClientInventoryRL.Pages" 
+      xmlns:local1="clr-namespace:ClientInventoryRL.Converters"
+      xmlns:ui="clr-namespace:ClientInventoryRL.Services"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="1100"
+      Title="InventoryUserPage"
+      Loaded="Page_Loaded">
+
+    
+    <Page.Resources>
+    <Style TargetType="ListBoxItem">
+        <Setter Property="IsSelected" Value="{Binding Content.IsSelected, Mode=TwoWay, RelativeSource={RelativeSource Self}}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBoxItem">
+                    <ContentPresenter/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+        <local1:WidthConverter x:Key="WidthConverter"/>
+    <Style x:Key="CustomListViewItemStyle" TargetType="{x:Type Border}">
+        <Style.Triggers>
+            <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                <Setter Property="Background" Value="#2C2C2C"></Setter>
+            </Trigger>
+            <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                <Setter Property="Background" Value="#262626"></Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.RowSpan="3">
+            <Rectangle Fill="#FF636554"/>
+            <Image Source="/Resources/background.png" 
+                Stretch="UniformToFill" 
+                Opacity="0.06" />
+        </Grid>
+        <Grid Margin="20"
+            Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="0"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid x:Name="grid"
+                Grid.Row="1"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition />
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal"
+                        Margin="20 5"
+                        VerticalAlignment="Center">
+                    <Image Source="{StaticResource BackpackPathDrawingImage}"
+                        Width="40"
+                        Height="40"
+                        Margin="0 0 10 0"
+                        VerticalAlignment="Center"/>
+                    <TextBlock Text="ИНВЕНТАРЬ"
+                            Foreground="#E3E1DE"
+                            FontFamily="Bahnschrift Light" 
+                            FontSize="20"
+                            VerticalAlignment="Bottom" />
+                    <Button Content="as" Click="Button_Click"/>
+                </StackPanel>
+                <ListBox ItemsSource="{Binding CurrentInventory.CollectionSlots}"
+                        Grid.Row="2"
+                        x:Name="LV" 
+                        d:ItemsSource="{d:SampleData ItemCount=20}"
+                        Width="428"
+                        MaxWidth="428"
+                        BorderThickness="0"
+                        Background="Transparent"
+                        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                        VerticalAlignment="Top"
+                        dd:DragDrop.IsDropTarget="True"
+                        dd:DragDrop.IsDragSource="True"
+                        dd:DragDrop.DropHandler="{x:Static ui:DragDropTarget.Instance}"
+                        dd:DragDrop.UseDefaultDragAdorner="True"
+                        dd:DragDrop.UseDefaultEffectDataTemplate="True">
+                    <ListBox.Resources>
+                        <AlternationConverter x:Key="AltCnvKey">
+                            <SolidColorBrush Color="#31342E"/>
+                            <SolidColorBrush Color="#31342E" Opacity=".72"/>
+                            <SolidColorBrush Color="#31342E" Opacity=".72"/>
+                        </AlternationConverter>
+                        <AlternationConverter x:Key="VisibilityLine">
+                            <SolidColorBrush Color="Transparent"/>
+                            <SolidColorBrush Color="#31342E" Opacity=".60"/>
+                            <SolidColorBrush Color="Transparent"/>
+                        </AlternationConverter>
+                    </ListBox.Resources>
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel x:Name="wrapPanel" 
+                                    Orientation="Horizontal" 
+                                    Width="{Binding ActualWidth, ElementName=LV, Converter={StaticResource WidthConverter}, ConverterParameter=20, Mode=OneWay}" />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ItemsControl.GroupStyle>
+                        <GroupStyle AlternationCount="3">
+                            <GroupStyle.ContainerStyle>
+                                <Style TargetType="{x:Type GroupItem}" x:Name="group">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type GroupItem}">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="auto" />
+                                                        <ColumnDefinition />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition/>
+                                                    </Grid.RowDefinitions>
+                                                    <Rectangle Grid.ColumnSpan="2"
+                                                            Height="2"
+                                                            Fill="{Binding RelativeSource={RelativeSource  AncestorType=GroupItem, Mode=FindAncestor}, Path=(ItemsControl.AlternationIndex), Converter={StaticResource VisibilityLine}}"
+                                                            Margin="0 1 50 1"/>
+                                                    <TextBlock Text="{Binding Name}"
+                                                            Grid.Row="1"
+                                                            Margin="0 4"
+                                                            FontSize="15"
+                                                            RenderOptions.BitmapScalingMode="Linear"
+                                                            VerticalAlignment="Top" 
+                                                            FontFamily="Bahnschrift Light" 
+                                                            FontWeight="SemiBold"
+                                                            Foreground="#E3E1DE"
+                                                            Opacity=".5">
+                                                        <TextBlock.LayoutTransform>
+                                                            <RotateTransform Angle="-90"/>
+                                                        </TextBlock.LayoutTransform>
+                                                    </TextBlock>
+                                                    <ItemsPresenter Grid.Column="1" 
+                                                                Grid.Row="1"/>
+
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </GroupStyle.ContainerStyle>
+                        </GroupStyle>
+
+                    </ItemsControl.GroupStyle>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Background="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type GroupItem}}, Path=(ItemsControl.AlternationIndex), Converter={StaticResource AltCnvKey}}" 
+                                Opacity=".72"
+                                Width="70"
+                                Height="70"
+                                BorderThickness="2"
+                                CornerRadius="3"
+                                MouseEnter="Border_MouseEnter">
+                                <Border.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="Background"
+                                            Value="{Binding RelativeSource={RelativeSource  
+                                                    AncestorType=GroupItem, 
+                                                    Mode=FindAncestor}, 
+                                                    Path=(ItemsControl.AlternationIndex), 
+                                                    Converter={StaticResource AltCnvKey}}"/>
+                                        <Style.Triggers>
+                                            <Trigger Property="Border.IsMouseOver" Value="True">
+                                                <Setter Property="Border.BorderBrush" Value="#FF252725"></Setter>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+
+                                </Border.Resources>
+                                <Image Source="{Binding Item.MainImage}"
+                                    Margin="5"
+                                    RenderOptions.BitmapScalingMode="Fant"/>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+
+                </ListBox>
+            </Grid>
+            <Grid Grid.Column="2"
+                Grid.Row="1"
+                Width="400"
+                VerticalAlignment="Top"
+                >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <Border Background="#31342E"
+                    Grid.ColumnSpan="3"
+                    CornerRadius="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="001"
+                                VerticalAlignment="Center"
+                                Foreground="#E3E1DE"
+                                Padding="7 4 5 4"
+                                FontSize="25"/>
+                        <Rectangle Width="1"
+                                Grid.Column="1"
+                                Margin="2 5 6 5"
+                                Fill="#C5C5C5"/>
+                        <StackPanel Grid.Column="2"
+                                VerticalAlignment="Center">
+                            <TextBlock Text="{Binding FullNameUser}"
+                                    Foreground="#E3E1DE"
+                                    FontSize="16"
+                                    VerticalAlignment="Bottom"/>
+                            <TextBlock Text="{Binding Login, StringFormat='({0})'}"
+                                    FontSize="10"
+                                    VerticalAlignment="Top"
+                                    Foreground="#E3E1DE"
+                                    Opacity="0.7"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+                <Border
+                    Grid.Row="2"
+                    Grid.RowSpan="3"
+                    Padding="17"
+                    CornerRadius="2">
+                    <Border.Background>
+                        <SolidColorBrush Color="#FF31342E" Opacity="0.7"/>
+                    </Border.Background>
+                    <Image Source="{Binding Image}"
+                        Width="150"
+                        Height="150"/>
+                </Border>
+                <Border Background="#31342E"
+                        Grid.Row="2"
+                        Grid.Column="2"
+                        CornerRadius="2"
+                        Width="150"
+                        Height="100">
+                    <TextBlock Text="{Binding CurrentInventory.ClothesModifiers.Name}"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"/>
+                </Border>
+                <Border Background="#31342E"
+                    Grid.Row="4"
+                    Grid.Column="2"
+                    CornerRadius="2"
+                    Width="150"
+                    Height="100">
+                    <TextBlock Text="{Binding CurrentInventory.BackpackModifiers.Name}"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"/>
+                </Border>
+                <Border Background="#31342E"
+                        Grid.Row="6"
+                        Grid.RowSpan="6"
+                        Grid.Column="2"
+                        CornerRadius="2"
+                        Width="150"
+                    Height="100">
+                    <TextBlock Text="{Binding CurrentInventory.BagModifiers.Name}"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"/>
+                </Border>
+                <Border Background="#31342E"
+                    Grid.Row="6"
+                    CornerRadius="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel VerticalAlignment="Center"
+                                    Margin="10 4">
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0}/{1}">
+                                        <Binding Path="CurrentInventory.CurrentWeightInventory" />
+                                        <Binding Path="CurrentInventory.MaxWeightInventory" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Center"
+                                    Margin="10 4"
+                                    Grid.Column="2">
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0}/{1}">
+                                        <Binding Path="CurrentInventory.CurrentWeightInventory" />
+                                        <Binding Path="CurrentInventory.MaxWeightInventory" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+                <Border Background="#31342E"
+                        Grid.Row="8"
+                        CornerRadius="2">
+                    
+                </Border>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

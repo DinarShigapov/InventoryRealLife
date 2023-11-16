@@ -13,10 +13,10 @@ namespace ClientInventoryRL.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class InventoryRealLifeDBEntities : DbContext
+    public partial class InventoryRLDataBaseEntities : DbContext
     {
-        public InventoryRealLifeDBEntities()
-            : base("name=InventoryRealLifeDBEntities")
+        public InventoryRLDataBaseEntities()
+            : base("name=InventoryRLDataBaseEntities")
         {
         }
     
@@ -25,7 +25,13 @@ namespace ClientInventoryRL.Model
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Role> Role { get; set; }
+        public virtual DbSet<Admin> Admin { get; set; }
+        public virtual DbSet<Inventory> Inventory { get; set; }
+        public virtual DbSet<InventoryModifiers> InventoryModifiers { get; set; }
+        public virtual DbSet<InventorySlotModifiers> InventorySlotModifiers { get; set; }
+        public virtual DbSet<Item> Item { get; set; }
+        public virtual DbSet<Slot> Slot { get; set; }
+        public virtual DbSet<TypeModifires> TypeModifires { get; set; }
         public virtual DbSet<User> User { get; set; }
     }
 }
