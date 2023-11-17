@@ -30,7 +30,7 @@ namespace ClientInventoryRL.Pages
             InitializeComponent();
 
 
-
+            
             this.DataContext = App.LoggedUser;
         }
 
@@ -59,7 +59,7 @@ namespace ClientInventoryRL.Pages
         {
             _mediaPlayer = new MediaPlayer();
             _mediaPlayer.Volume = _mediaPlayer.Volume / 25.0f;
-            _mediaPlayer.Open(new Uri(@"C:\Users\dinar\source\repos\WpfApp4\WpfApp4\Resources\MouseEnterSound.wav"));
+            _mediaPlayer.Open(new Uri(@"Resources/MouseEnterSound.wav", UriKind.Relative));
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -69,7 +69,7 @@ namespace ClientInventoryRL.Pages
             //sd[1].MainImage = File.ReadAllBytes(@"C:\Users\262023\source\repos\InventoryRealLife\ClientInventoryRL\Resources\rukzak.png");
             //App.DB.SaveChanges();
 
-            //App.DB.SaveChanges();
+            App.DB.SaveChanges();
         }
 
         private void MIAddNewItem_Click(object sender, RoutedEventArgs e)
@@ -143,6 +143,13 @@ namespace ClientInventoryRL.Pages
         private void FullName_MouseDown(object sender, MouseButtonEventArgs e)
         {
             NavigationService.Navigate(new EditProfilePage());
+        }
+
+        private void Border_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            StreamResourceInfo sri = Application.GetResourceStream(new Uri("C:\\Users\\262023\\source\\repos\\InventoryRealLife\\ClientInventoryRL\\Resources\\HandMoveGrab.cur", UriKind.Relative));
+            Cursor customCursor = new Cursor(sri.Stream);
+            (sender as Border).Cursor = customCursor;
         }
     }
 }

@@ -123,10 +123,6 @@ namespace ClientInventoryRL.Services
             dropInfo.NotHandled = true;
             dropInfo.Effects = DragDropEffects.Move;
 
-            var select = FindVisualChild<Border>(dropInfo.VisualTargetItem);
-            StreamResourceInfo sri = Application.GetResourceStream(new Uri("C:\\Users\\262023\\source\\repos\\InventoryRealLife\\ClientInventoryRL\\Resources\\HandMoveGrab.cur", UriKind.Relative));
-            Cursor customCursor = new Cursor(sri.Stream);
-            select.Cursor = customCursor;
 
         }
 

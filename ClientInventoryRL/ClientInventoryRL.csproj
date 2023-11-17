@@ -286,7 +286,9 @@
       <LastGenOutput>Model1321.cs</LastGenOutput>
     </Content>
     <Resource Include="Resources\HandMoveGrab.cur" />
-    <Content Include="Resources\MouseEnterSound.wav" />
+    <Content Include="Resources\MouseEnterSound.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Resources\Waterbottle.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

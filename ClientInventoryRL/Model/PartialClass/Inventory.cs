@@ -90,8 +90,8 @@ namespace ClientInventoryRL.Model
             {
                 Slot.Remove(item);
             }
-
             InventoryModifiers.Remove(InventoryModifiers.FirstOrDefault(x => x.InventorySlotModifiers == modifiers));
+
         }
 
         public string WarningText 
