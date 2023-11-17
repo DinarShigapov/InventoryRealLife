@@ -1,7 +1,9 @@
 ﻿using ClientInventoryRL.Model;
+using ClientInventoryRL.Model.PartialClass;
 using ClientInventoryRL.Windows;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
+using System.Windows.Resources;
 using System.Windows.Shapes;
 
 namespace ClientInventoryRL.Pages
@@ -25,6 +28,9 @@ namespace ClientInventoryRL.Pages
         public InventoryUserPage()
         {
             InitializeComponent();
+
+
+
             this.DataContext = App.LoggedUser;
         }
 
@@ -58,7 +64,12 @@ namespace ClientInventoryRL.Pages
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            App.DB.SaveChanges();
+
+            //var sd = App.DB.InventorySlotModifiers.ToList();
+            //sd[1].MainImage = File.ReadAllBytes(@"C:\Users\262023\source\repos\InventoryRealLife\ClientInventoryRL\Resources\rukzak.png");
+            //App.DB.SaveChanges();
+
+            //App.DB.SaveChanges();
         }
 
         private void MIAddNewItem_Click(object sender, RoutedEventArgs e)
@@ -69,7 +80,7 @@ namespace ClientInventoryRL.Pages
                 return;
             }
 
-            _ = new ItemWindow(selectedSlot).ShowDialog();
+            _ = new ItemWindow(selectedSlot, App.LoggedUser.CurrentInventory.Slot.ToList()).ShowDialog();
             this.DataContext = null;
             this.DataContext = App.LoggedUser;
         }
@@ -84,6 +95,54 @@ namespace ClientInventoryRL.Pages
             selectedSlot.Item = null;
             this.DataContext = null;
             this.DataContext = App.LoggedUser;
+        }
+
+        private void MIAddModifires_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedModifires = (sender as MenuItem).Name;
+            if (selectedModifires == null)
+                return;
+
+            ModifiresWindow modifires = null;
+
+            switch (selectedModifires)
+            {
+                case "ClothesModifier":
+                    modifires = new ModifiresWindow(ModifiresType.Clothes);
+                    modifires.ShowDialog();
+                    break;
+                case "BackpackModifier":
+                    modifires = new ModifiresWindow(ModifiresType.Backpack);
+                    modifires.ShowDialog();
+                    break;
+                case "BagModifier":
+                    modifires = new ModifiresWindow(ModifiresType.Bag);
+                    modifires.ShowDialog();
+                    break;
+            }
+
+            this.DataContext = null;
+            this.DataContext = App.LoggedUser;
+
+
+        }
+
+        private void MIDeleteModifires_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedModifires = (sender as MenuItem).DataContext as InventorySlotModifiers;
+            if (selectedModifires == null)
+                return;
+
+
+            App.LoggedUser.CurrentInventory.RemoveModifires(selectedModifires);
+            this.DataContext = null;
+            this.DataContext = App.LoggedUser;
+
+        }
+
+        private void FullName_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new EditProfilePage());
         }
     }
 }

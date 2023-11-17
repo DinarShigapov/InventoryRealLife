@@ -62,27 +62,27 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid x:Name="grid"
-                Grid.Row="1"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Top">
+                  Grid.Row="1"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Top">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition />
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal"
-                        Margin="20 5"
-                        VerticalAlignment="Center">
+                            Margin="20 5"
+                            VerticalAlignment="Center">
                     <Image Source="{StaticResource BackpackPathDrawingImage}"
-                        Width="40"
-                        Height="40"
-                        Margin="0 0 10 0"
-                        VerticalAlignment="Center"/>
+                           Width="40"
+                           Height="40"
+                           Margin="0 0 10 0"
+                           VerticalAlignment="Center"/>
                     <TextBlock Text="ИНВЕНТАРЬ"
-                            Foreground="#E3E1DE"
-                            FontFamily="Bahnschrift Light" 
-                            FontSize="20"
-                            VerticalAlignment="Bottom" />
+                               Foreground="#E3E1DE"
+                               FontFamily="Bahnschrift Light" 
+                               FontSize="20"
+                               VerticalAlignment="Bottom" />
                     <Button Content="as" Click="Button_Click"/>
                 </StackPanel>
                 <ListBox ItemsSource="{Binding CurrentInventory.CollectionSlots}"
@@ -136,25 +136,25 @@
                                                         <RowDefinition/>
                                                     </Grid.RowDefinitions>
                                                     <Rectangle Grid.ColumnSpan="2"
-                                                            Height="2"
-                                                            Fill="{Binding RelativeSource={RelativeSource  AncestorType=GroupItem, Mode=FindAncestor}, Path=(ItemsControl.AlternationIndex), Converter={StaticResource VisibilityLine}}"
-                                                            Margin="0 1 50 1"/>
+                                                               Height="2"
+                                                               Fill="{Binding RelativeSource={RelativeSource  AncestorType=GroupItem, Mode=FindAncestor}, Path=(ItemsControl.AlternationIndex), Converter={StaticResource VisibilityLine}}"
+                                                               Margin="0 1 50 1"/>
                                                     <TextBlock Text="{Binding Name}"
-                                                            Grid.Row="1"
-                                                            Margin="0 4"
-                                                            FontSize="15"
-                                                            RenderOptions.BitmapScalingMode="Linear"
-                                                            VerticalAlignment="Top" 
-                                                            FontFamily="Bahnschrift Light" 
-                                                            FontWeight="SemiBold"
-                                                            Foreground="#E3E1DE"
-                                                            Opacity=".5">
+                                                               Grid.Row="1"
+                                                               Margin="0 4"
+                                                               FontSize="15"
+                                                               RenderOptions.BitmapScalingMode="Linear"
+                                                               VerticalAlignment="Top" 
+                                                               FontFamily="Bahnschrift Light" 
+                                                               FontWeight="SemiBold"
+                                                               Foreground="#E3E1DE"
+                                                               Opacity=".5">
                                                         <TextBlock.LayoutTransform>
                                                             <RotateTransform Angle="-90"/>
                                                         </TextBlock.LayoutTransform>
                                                     </TextBlock>
                                                     <ItemsPresenter Grid.Column="1" 
-                                                                Grid.Row="1"/>
+                                                                    Grid.Row="1"/>
 
                                                 </Grid>
                                             </ControlTemplate>
@@ -191,14 +191,14 @@
 
                                 </Border.Resources>
                                 <Image Source="{Binding Item.MainImage}"
-                                    Margin="5"
-                                    RenderOptions.BitmapScalingMode="Fant"/>
+                                       Margin="5"
+                                       RenderOptions.BitmapScalingMode="Fant"/>
                                 <Border.ContextMenu>
                                     <ContextMenu>
                                         <MenuItem Header="Добавить"
                                                   x:Name="MIAddNewItem"
                                                   Click="MIAddNewItem_Click"/>
-                                        <MenuItem Header="Удалить"
+                                        <MenuItem Header="Убрать"
                                                   x:Name="MIDeleteItem"
                                                   Click="MIDeleteItem_Click"/>
                                     </ContextMenu>
@@ -254,8 +254,10 @@
                             <TextBlock Text="{Binding FullNameUser}"
                                        Foreground="#E3E1DE"
                                        FontSize="16"
+                                       Cursor="Hand"
+                                       MouseDown="FullName_MouseDown"
                                        VerticalAlignment="Bottom"
-                                       Style="{StaticResource TextBlockFont}"/>
+                                       Style="{StaticResource TextBlockLink}"/>
                             <TextBlock Text="{Binding Login, StringFormat='({0})'}"
                                        FontSize="10"
                                        VerticalAlignment="Top"
@@ -279,34 +281,67 @@
                 </Border>
                 <Border Background="#31342E"
                         Grid.Row="2"
+                        Padding="5"
                         Grid.Column="2"
                         CornerRadius="2"
                         Width="150"
-                        Height="100">
-                    <TextBlock Text="{Binding CurrentInventory.BackpackModifiers.Name}"
-                               VerticalAlignment="Center"
-                               HorizontalAlignment="Center"/>
+                        Height="100"
+                        DataContext="{Binding CurrentInventory.ClothesModifiers}">
+                    <Image Source="{Binding MainImage}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"/>
+                    <Border.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Добавить"
+                                      Name="ClothesModifier"
+                                      Click="MIAddModifires_Click"/>
+                            <MenuItem Header="Удалить"
+                                      Click="MIDeleteModifires_Click"/>
+                        </ContextMenu>
+                    </Border.ContextMenu>
                 </Border>
                 <Border Background="#31342E"
-                    Grid.Row="4"
-                    Grid.Column="2"
-                    CornerRadius="2"
-                    Width="150"
-                    Height="100">
-                    <TextBlock Text="{Binding CurrentInventory.BackpackModifiers.Name}"
-                               VerticalAlignment="Center"
-                               HorizontalAlignment="Center"/>
+                        Grid.Row="4"
+                        Padding="5"
+                        Grid.Column="2"
+                        CornerRadius="2"
+                        Width="150"
+                        Height="100"
+                        DataContext="{Binding CurrentInventory.BackpackModifiers}">
+                    <Image Source="{Binding MainImage}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"/>
+                    <Border.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Добавить"
+                                      Name="BackpackModifier"
+                                      Click="MIAddModifires_Click"/>
+                            <MenuItem Header="Удалить"
+                                      Click="MIDeleteModifires_Click"/>
+                        </ContextMenu>
+                    </Border.ContextMenu>
                 </Border>
                 <Border Background="#31342E"
                         Grid.Row="6"
+                        Padding="5"
                         Grid.RowSpan="6"
                         Grid.Column="2"
                         CornerRadius="2"
                         Width="150"
-                    Height="100">
-                    <TextBlock Text="{Binding CurrentInventory.BagModifiers.Name}"
-                               VerticalAlignment="Center"
-                               HorizontalAlignment="Center"/>
+                        Height="100"
+                        DataContext="{Binding CurrentInventory.BagModifiers}">
+                    <Image Source="{Binding MainImage}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"/>
+                    <Border.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Добавить"
+                                      Name="BagModifier"
+                                      Click="MIAddModifires_Click"/>
+                            <MenuItem Header="Удалить"
+                                      Click="MIDeleteModifires_Click"/>
+                        </ContextMenu>
+                    </Border.ContextMenu>
                 </Border>
                 <Border Background="#31342E"
                     Grid.Row="6"

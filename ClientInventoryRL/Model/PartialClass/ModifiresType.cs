@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClientInventoryRL.Model.PartialClass
 {
-    enum ModifiresType
+    public enum ModifiresType
     {
         Clothes = 1,
         Backpack = 2,

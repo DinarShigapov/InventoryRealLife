@@ -21,11 +21,21 @@ namespace ClientInventoryRL.Windows
     public partial class ItemWindow : Window
     {
         Slot contextSlot;
-        public ItemWindow(Slot slot)
+        public ItemWindow(Slot slot, List<Slot> slots)
         {
             InitializeComponent();
             contextSlot = slot;
-            this.DataContext = App.DB.Item.ToList();
+
+            var listAccessItem = new List<Item>();
+            foreach (var item in App.DB.Item.Where(x => x.UserId == App.LoggedUser.Id).ToList())
+            {
+                var buffer = App.LoggedUser.CurrentInventory.Slot.Where(x => x.Item != null);
+                if (!buffer.Any(x => x.Item.Id == item.Id))
+                {
+                    listAccessItem.Add(item);
+                }
+            }
+            this.DataContext = listAccessItem.ToList();
         }
 
         private void ListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)

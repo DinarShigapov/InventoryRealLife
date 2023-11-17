@@ -1,0 +1,143 @@
+﻿<Page x:Class="ClientInventoryRL.Pages.EditProfilePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ClientInventoryRL.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="EditProfilePage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Rectangle Fill="#FF636554"/>
+            <Image Source="/Resources/background.png" 
+                Stretch="UniformToFill" 
+                Opacity="0.06" />
+        </Grid>
+        <Grid Grid.Row="1"
+              Grid.RowSpan="2">
+            <Rectangle Fill="#FF323329"/>
+            <Image Source="/Resources/background.png" 
+                Stretch="UniformToFill" 
+                Opacity="0.06" />
+        </Grid>
+        <StackPanel Margin="20 0"
+                    Orientation="Horizontal">
+            <Button Content="Назад"
+                    Click="Button_Click"/>
+            <TextBlock Text="Профиль"
+                       VerticalAlignment="Center"
+                       Foreground="#E3E1DE"
+                       FontSize="20"
+                       Style="{StaticResource TextBlockFont}"/>
+        </StackPanel>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid HorizontalAlignment="Center"
+                      VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="200"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Style.Resources>
+                            <Style TargetType="TextBlock" BasedOn="{StaticResource TextBlockFont}">
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="FontSize" Value="15"/>
+                                <Setter Property="Foreground" Value="#E3E1DE"/>
+                            </Style>
+                            <Style TargetType="TextBox" BasedOn="{StaticResource TextBoxFont}">
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="FontSize" Value="15"/>
+                            </Style>
+                        </Style.Resources>
+                    </Style>
+                </Grid.Style>
+
+                <TextBlock Text="Фамилия:"/>
+                <TextBlock Text="Имя:"
+                           Grid.Row="2"/>
+                <TextBlock Text="Отчество:"
+                           Grid.Row="4"/>
+                <TextBlock Text="Email:"
+                           Grid.Row="6"/>
+                <TextBlock Text="Телефон:"
+                           Grid.Row="8"/>
+
+                <TextBox Text="{Binding LastName}"
+                         Grid.Column="2"/>
+                <TextBox Text="{Binding FirstName}"
+                         Grid.Column="2"
+                         Grid.Row="2"/>
+                <TextBox Text="{Binding Patronymic}"
+                         Grid.Column="2"
+                         Grid.Row="4"/>
+                <TextBox Text="{Binding Email}"
+                         Grid.Column="2"
+                         Grid.Row="6"/>
+                <TextBox Text="{Binding Phone}"
+                         Grid.Column="2"
+                         Grid.Row="8"/>
+            </Grid>
+            <StackPanel Grid.Column="2"
+                            VerticalAlignment="Center">
+                <Grid>
+                    <Ellipse Height="240" Width="240">
+                        <Ellipse.Fill>
+                            <SolidColorBrush Color="Black" Opacity="0.05"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <Ellipse Height="200" Width="200"
+                                 Panel.ZIndex="-1">
+                        <Ellipse.Fill>
+                            <SolidColorBrush Color="Black" Opacity="0.05"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <Ellipse Height="170" Width="170">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="{Binding Image}" Stretch="UniformToFill"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <Ellipse Height="170" Width="170">
+                        <Ellipse.Fill>
+                            <SolidColorBrush Color="White" Opacity="0.45"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                </Grid>
+                <Button x:Name="BEditImage"
+                        Height="30"
+                        Width="100" 
+                        Margin="0 -8 0 0" 
+                        Background="#FF888888"
+                        Content="Добавить"
+                        FontSize="13">
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

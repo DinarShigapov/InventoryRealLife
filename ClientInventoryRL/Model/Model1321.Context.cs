@@ -13,10 +13,10 @@ namespace ClientInventoryRL.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class InventoryRLDataBaseEntities1 : DbContext
+    public partial class InventoryDataBaseEntities : DbContext
     {
-        public InventoryRLDataBaseEntities1()
-            : base("name=InventoryRLDataBaseEntities1")
+        public InventoryDataBaseEntities()
+            : base("name=InventoryDataBaseEntities")
         {
         }
     

@@ -25,6 +25,7 @@ namespace ClientInventoryRL.Model
         public string Description { get; set; }
         public byte[] MainImage { get; set; }
         public float Weight { get; set; }
+        public Nullable<int> UserId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Slot> Slot { get; set; }
