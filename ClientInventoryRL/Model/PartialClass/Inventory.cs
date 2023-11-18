@@ -11,14 +11,10 @@ namespace ClientInventoryRL.Model
 {
     public partial class Inventory
     {
-
-
-       
-
         public InventorySlotModifiers ClothesModifiers 
         {
             get => InventoryModifiers.FirstOrDefault(
-                x => x.InventorySlotModifiers.TypeModifiresId == (int)ModifiresType.Clothes)?.InventorySlotModifiers;
+                    x => x.InventorySlotModifiers.TypeModifiresId == (int)ModifiresType.Clothes)?.InventorySlotModifiers;
             set 
             {
 
@@ -57,7 +53,7 @@ namespace ClientInventoryRL.Model
                     {
                         InventoryModifiers.Add(new InventoryModifiers
                         {
-                            InventoryId = Id,
+                            Inventory = this,
                             InventorySlotModifiers = value,
                             WeightStorage = 100,
                         });
@@ -83,17 +79,16 @@ namespace ClientInventoryRL.Model
 
             }
         }
-
         public void RemoveModifires(InventorySlotModifiers modifiers) 
         {
-            foreach (var item in Slot.Where(x => x.InventorySlotModifiers == modifiers).ToArray())
+            foreach (var item in App.LoggedUser.CurrentInventory.Slot.Where(x => x.InventorySlotModifiers.Id == modifiers.Id).ToList())
             {
-                Slot.Remove(item);
+                App.DB.Slot.Remove(item);
             }
-            InventoryModifiers.Remove(InventoryModifiers.FirstOrDefault(x => x.InventorySlotModifiers == modifiers));
 
+            var deleteModifires = App.DB.InventoryModifiers.FirstOrDefault(x => x.InventorySlotModifiers.Id == modifiers.Id && UserId == App.LoggedUser.Id);
+            App.DB.InventoryModifiers.Remove(deleteModifires);
         }
-
         public string WarningText 
         {
             get 
@@ -108,7 +103,6 @@ namespace ClientInventoryRL.Model
                 }
             }
         }
-
         public bool IsWarningWeight
         {
             get
@@ -123,7 +117,6 @@ namespace ClientInventoryRL.Model
                 }
             }
         }
-
         public string ColorWarningWeight
         {
             get 
@@ -138,7 +131,6 @@ namespace ClientInventoryRL.Model
                 }
             }
         }
-
         public double CurrentSlotInventory
         {
             get
@@ -150,7 +142,6 @@ namespace ClientInventoryRL.Model
                 return 0;
             }
         }
-
         public double MaxSlotInventory
         {
             get
@@ -162,8 +153,6 @@ namespace ClientInventoryRL.Model
                 return 0;
             }
         }
-
-
         public double CurrentWeightInventory
         {
             get 
@@ -175,7 +164,6 @@ namespace ClientInventoryRL.Model
                 return 0;
             }
         }
-
         public double MaxWeightInventory
         {
             get
@@ -187,9 +175,6 @@ namespace ClientInventoryRL.Model
                 return 0;
             }
         }
-
-
-
         public CollectionView CollectionSlots
         {
             get 

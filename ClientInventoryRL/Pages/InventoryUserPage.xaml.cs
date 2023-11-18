@@ -69,6 +69,8 @@ namespace ClientInventoryRL.Pages
             //sd[1].MainImage = File.ReadAllBytes(@"C:\Users\262023\source\repos\InventoryRealLife\ClientInventoryRL\Resources\rukzak.png");
             //App.DB.SaveChanges();
 
+
+            _ = App.LoggedUser;
             App.DB.SaveChanges();
         }
 

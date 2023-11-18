@@ -8,7 +8,6 @@ namespace ClientInventoryRL.Model
 {
     public partial class User
     {
-
         public string FullNameUser
         {
             get 

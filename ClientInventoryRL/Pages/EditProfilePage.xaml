@@ -13,6 +13,7 @@
             <RowDefinition Height="70"/>
             <RowDefinition Height="10"/>
             <RowDefinition/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <Grid>
             <Rectangle Fill="#FF636554"/>
@@ -33,18 +34,12 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="AUTO"/>
             </Grid.ColumnDefinitions>
-            <Button Content="Назад"
-                    Grid.Column="2"
-                    VerticalAlignment="Center"
-                    Padding="20 5"
-                    Click="Button_Click"/>
             <TextBlock Text="Профиль"
                        VerticalAlignment="Center"
                        Foreground="#E3E1DE"
                        FontSize="20"
                        Style="{StaticResource TextBlockFont}"/>
         </Grid>
-
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -146,6 +141,33 @@
                         Click="BEditImage_Click">
                 </Button>
             </StackPanel>
+        </Grid>
+        <Grid Grid.Row="6"
+              VerticalAlignment="Center">
+            <Grid>
+                <Rectangle Fill="#FF636554"/>
+                <Image Source="/Resources/background.png" 
+                Stretch="UniformToFill" 
+                Opacity="0.06" />
+            </Grid>
+            <Grid HorizontalAlignment="Right"
+                  Margin="10"> 
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Content="Сохранить"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Padding="20 5"/>
+                <Button Content="Назад"
+                        Grid.Column="2"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Padding="20 5"
+                        Click="Button_Click"/>
+            </Grid>
         </Grid>
     </Grid>
 </Page>

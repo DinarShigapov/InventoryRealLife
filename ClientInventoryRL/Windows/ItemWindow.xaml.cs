@@ -35,6 +35,8 @@ namespace ClientInventoryRL.Windows
                     listAccessItem.Add(item);
                 }
             }
+
+
             this.DataContext = listAccessItem.ToList();
         }
 
