@@ -98,6 +98,45 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Admin.cs">
+      <DependentUpon>Model187.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Inventory.cs">
+      <DependentUpon>Model187.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\InventoryModifiers.cs">
+      <DependentUpon>Model187.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\InventorySlotModifiers.cs">
+      <DependentUpon>Model187.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Item.cs">
+      <DependentUpon>Model187.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Model187.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model187.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Model187.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model187.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Model187.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model187.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Slot.cs">
+      <DependentUpon>Model187.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\TypeModifires.cs">
+      <DependentUpon>Model187.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\User.cs">
+      <DependentUpon>Model187.tt</DependentUpon>
+    </Compile>
     <Compile Include="Pages\EditProfilePage.xaml.cs">
       <DependentUpon>EditProfilePage.xaml</DependentUpon>
     </Compile>
@@ -153,49 +192,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Converters\WidthConverter.cs" />
-    <Compile Include="Model\Admin.cs">
-      <DependentUpon>Model1321.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Inventory.cs">
-      <DependentUpon>Model1321.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\InventoryModifiers.cs">
-      <DependentUpon>Model1321.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\InventorySlotModifiers.cs">
-      <DependentUpon>Model1321.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Item.cs">
-      <DependentUpon>Model1321.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Model1321.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1321.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Model1321.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1321.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Model1321.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1321.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Model\PartialClass\Inventory.cs" />
     <Compile Include="Model\PartialClass\InventorySlotModifiers.cs" />
     <Compile Include="Model\PartialClass\ModifiresType.cs" />
     <Compile Include="Model\PartialClass\User.cs" />
-    <Compile Include="Model\Slot.cs">
-      <DependentUpon>Model1321.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\TypeModifires.cs">
-      <DependentUpon>Model1321.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\User.cs">
-      <DependentUpon>Model1321.tt</DependentUpon>
-    </Compile>
     <Compile Include="Pages\ForgotPasswordPage.xaml.cs">
       <DependentUpon>ForgotPasswordPage.xaml</DependentUpon>
     </Compile>
@@ -247,12 +247,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model\Model1321.edmx">
+    <EntityDeploy Include="Model\Model187.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1321.Designer.cs</LastGenOutput>
+      <LastGenOutput>Model187.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\Model1321.edmx.diagram">
-      <DependentUpon>Model1321.edmx</DependentUpon>
+    <None Include="Model\Model187.edmx.diagram">
+      <DependentUpon>Model187.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -272,21 +272,26 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Resources\Sounds\SoundOpenBackpack.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Resources\rukzak.png" />
     <Resource Include="Resources\background.png" />
     <Resource Include="Resources\IconsUI\ClothesIcons.png" />
-    <Content Include="Model\Model1321.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1321.edmx</DependentUpon>
-      <LastGenOutput>Model1321.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Model\Model1321.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1321.edmx</DependentUpon>
-      <LastGenOutput>Model1321.cs</LastGenOutput>
-    </Content>
     <Resource Include="Resources\HandMoveGrab.cur" />
-    <Content Include="Resources\MouseEnterSound.wav">
+    <Content Include="Model\Model187.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model187.edmx</DependentUpon>
+      <LastGenOutput>Model187.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\Model187.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model187.edmx</DependentUpon>
+      <LastGenOutput>Model187.cs</LastGenOutput>
+    </Content>
+    <Resource Include="Resources\backgroundMenu.png" />
+    <Resource Include="Resources\LogoTest.png" />
+    <Content Include="Resources\Sounds\MouseEnterSound.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="Resources\Waterbottle.png" />

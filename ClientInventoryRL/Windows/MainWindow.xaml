@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClientInventoryRL"
         mc:Ignorable="d"
-        Title="MainWindow" Height="650" Width="1000">
+        Icon="/Resources/LogoTest.png" 
+        Title="OneStack" Height="650" Width="1000">
     <Grid>
         <Frame x:Name="MainFrame"
                NavigationUIVisibility="Hidden"/>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище InventoryDataBaseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище InventoryDataBaseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="Id" />
@@ -207,55 +207,18 @@
             <End Role="Slot" EntitySet="Slot" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="InventoryDataBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="InventoryDataBaseEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Admin" EntityType="InventoryDataBaseModel.Admin" />
-          <EntitySet Name="Inventory" EntityType="InventoryDataBaseModel.Inventory" />
-          <EntitySet Name="InventoryModifiers" EntityType="InventoryDataBaseModel.InventoryModifiers" />
-          <EntitySet Name="InventorySlotModifiers" EntityType="InventoryDataBaseModel.InventorySlotModifiers" />
-          <EntitySet Name="Item" EntityType="InventoryDataBaseModel.Item" />
-          <EntitySet Name="Slot" EntityType="InventoryDataBaseModel.Slot" />
-          <EntitySet Name="TypeModifires" EntityType="InventoryDataBaseModel.TypeModifires" />
-          <EntitySet Name="User" EntityType="InventoryDataBaseModel.User" />
-          <AssociationSet Name="FK_Inventory_User" Association="InventoryDataBaseModel.FK_Inventory_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="Inventory" EntitySet="Inventory" />
-          </AssociationSet>
-          <AssociationSet Name="FK_InventoryModifiers_Inventory" Association="InventoryDataBaseModel.FK_InventoryModifiers_Inventory">
-            <End Role="Inventory" EntitySet="Inventory" />
-            <End Role="InventoryModifiers" EntitySet="InventoryModifiers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Slot_Inventory" Association="InventoryDataBaseModel.FK_Slot_Inventory">
-            <End Role="Inventory" EntitySet="Inventory" />
-            <End Role="Slot" EntitySet="Slot" />
-          </AssociationSet>
-          <AssociationSet Name="FK_InventoryModifiers_InventorySlotModifiers" Association="InventoryDataBaseModel.FK_InventoryModifiers_InventorySlotModifiers">
-            <End Role="InventorySlotModifiers" EntitySet="InventorySlotModifiers" />
-            <End Role="InventoryModifiers" EntitySet="InventoryModifiers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_InventorySlotModifiers_TypeModifires" Association="InventoryDataBaseModel.FK_InventorySlotModifiers_TypeModifires">
-            <End Role="TypeModifires" EntitySet="TypeModifires" />
-            <End Role="InventorySlotModifiers" EntitySet="InventorySlotModifiers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Slot_InventorySlotModifiers" Association="InventoryDataBaseModel.FK_Slot_InventorySlotModifiers">
-            <End Role="InventorySlotModifiers" EntitySet="InventorySlotModifiers" />
-            <End Role="Slot" EntitySet="Slot" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Slot_Item" Association="InventoryDataBaseModel.FK_Slot_Item">
-            <End Role="Item" EntitySet="Item" />
-            <End Role="Slot" EntitySet="Slot" />
-          </AssociationSet>
-        </EntityContainer>
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="Inventory">
           <Key>
@@ -265,9 +228,9 @@
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="MaxWeight" Type="Single" Nullable="false" />
           <Property Name="CurrentWeight" Type="Single" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="InventoryDataBaseModel.FK_Inventory_User" FromRole="Inventory" ToRole="User" />
-          <NavigationProperty Name="InventoryModifiers" Relationship="InventoryDataBaseModel.FK_InventoryModifiers_Inventory" FromRole="Inventory" ToRole="InventoryModifiers" />
-          <NavigationProperty Name="Slot" Relationship="InventoryDataBaseModel.FK_Slot_Inventory" FromRole="Inventory" ToRole="Slot" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Inventory_User" FromRole="Inventory" ToRole="User" />
+          <NavigationProperty Name="InventoryModifiers" Relationship="Self.FK_InventoryModifiers_Inventory" FromRole="Inventory" ToRole="InventoryModifiers" />
+          <NavigationProperty Name="Slot" Relationship="Self.FK_Slot_Inventory" FromRole="Inventory" ToRole="Slot" />
         </EntityType>
         <EntityType Name="InventoryModifiers">
           <Key>
@@ -277,34 +240,34 @@
           <Property Name="InventoryId" Type="Int32" Nullable="false" />
           <Property Name="InventorySlotModifiersId" Type="Int32" Nullable="false" />
           <Property Name="WeightStorage" Type="Single" Nullable="false" />
-          <NavigationProperty Name="Inventory" Relationship="InventoryDataBaseModel.FK_InventoryModifiers_Inventory" FromRole="InventoryModifiers" ToRole="Inventory" />
-          <NavigationProperty Name="InventorySlotModifiers" Relationship="InventoryDataBaseModel.FK_InventoryModifiers_InventorySlotModifiers" FromRole="InventoryModifiers" ToRole="InventorySlotModifiers" />
+          <NavigationProperty Name="Inventory" Relationship="Self.FK_InventoryModifiers_Inventory" FromRole="InventoryModifiers" ToRole="Inventory" />
+          <NavigationProperty Name="InventorySlotModifiers" Relationship="Self.FK_InventoryModifiers_InventorySlotModifiers" FromRole="InventoryModifiers" ToRole="InventorySlotModifiers" />
         </EntityType>
         <EntityType Name="InventorySlotModifiers">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TypeModifiresId" Type="Int32" Nullable="false" />
           <Property Name="Slots" Type="Int32" Nullable="false" />
           <Property Name="MaxCapacity" Type="Single" Nullable="false" />
           <Property Name="MainImage" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="InventoryModifiers" Relationship="InventoryDataBaseModel.FK_InventoryModifiers_InventorySlotModifiers" FromRole="InventorySlotModifiers" ToRole="InventoryModifiers" />
-          <NavigationProperty Name="TypeModifires" Relationship="InventoryDataBaseModel.FK_InventorySlotModifiers_TypeModifires" FromRole="InventorySlotModifiers" ToRole="TypeModifires" />
-          <NavigationProperty Name="Slot" Relationship="InventoryDataBaseModel.FK_Slot_InventorySlotModifiers" FromRole="InventorySlotModifiers" ToRole="Slot" />
+          <NavigationProperty Name="InventoryModifiers" Relationship="Self.FK_InventoryModifiers_InventorySlotModifiers" FromRole="InventorySlotModifiers" ToRole="InventoryModifiers" />
+          <NavigationProperty Name="TypeModifires" Relationship="Self.FK_InventorySlotModifiers_TypeModifires" FromRole="InventorySlotModifiers" ToRole="TypeModifires" />
+          <NavigationProperty Name="Slot" Relationship="Self.FK_Slot_InventorySlotModifiers" FromRole="InventorySlotModifiers" ToRole="Slot" />
         </EntityType>
         <EntityType Name="Item">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="MainImage" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Weight" Type="Single" Nullable="false" />
           <Property Name="UserId" Type="Int32" />
-          <NavigationProperty Name="Slot" Relationship="InventoryDataBaseModel.FK_Slot_Item" FromRole="Item" ToRole="Slot" />
+          <NavigationProperty Name="Slot" Relationship="Self.FK_Slot_Item" FromRole="Item" ToRole="Slot" />
         </EntityType>
         <EntityType Name="Slot">
           <Key>
@@ -315,37 +278,37 @@
           <Property Name="InventoryId" Type="Int32" Nullable="false" />
           <Property Name="StorageId" Type="Int32" Nullable="false" />
           <Property Name="QuantityItem" Type="Int32" />
-          <NavigationProperty Name="Inventory" Relationship="InventoryDataBaseModel.FK_Slot_Inventory" FromRole="Slot" ToRole="Inventory" />
-          <NavigationProperty Name="InventorySlotModifiers" Relationship="InventoryDataBaseModel.FK_Slot_InventorySlotModifiers" FromRole="Slot" ToRole="InventorySlotModifiers" />
-          <NavigationProperty Name="Item" Relationship="InventoryDataBaseModel.FK_Slot_Item" FromRole="Slot" ToRole="Item" />
+          <NavigationProperty Name="Inventory" Relationship="Self.FK_Slot_Inventory" FromRole="Slot" ToRole="Inventory" />
+          <NavigationProperty Name="InventorySlotModifiers" Relationship="Self.FK_Slot_InventorySlotModifiers" FromRole="Slot" ToRole="InventorySlotModifiers" />
+          <NavigationProperty Name="Item" Relationship="Self.FK_Slot_Item" FromRole="Slot" ToRole="Item" />
         </EntityType>
         <EntityType Name="TypeModifires">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="InventorySlotModifiers" Relationship="InventoryDataBaseModel.FK_InventorySlotModifiers_TypeModifires" FromRole="TypeModifires" ToRole="InventorySlotModifiers" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="InventorySlotModifiers" Relationship="Self.FK_InventorySlotModifiers_TypeModifires" FromRole="TypeModifires" ToRole="InventorySlotModifiers" />
         </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Patronymic" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="Login" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Login" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ProfileImage" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Phone" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IsDelete" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Inventory" Relationship="InventoryDataBaseModel.FK_Inventory_User" FromRole="User" ToRole="Inventory" />
+          <NavigationProperty Name="Inventory" Relationship="Self.FK_Inventory_User" FromRole="User" ToRole="Inventory" />
         </EntityType>
         <Association Name="FK_Inventory_User">
-          <End Type="InventoryDataBaseModel.User" Role="User" Multiplicity="1" />
-          <End Type="InventoryDataBaseModel.Inventory" Role="Inventory" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="Id" />
@@ -356,8 +319,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_InventoryModifiers_Inventory">
-          <End Type="InventoryDataBaseModel.Inventory" Role="Inventory" Multiplicity="1" />
-          <End Type="InventoryDataBaseModel.InventoryModifiers" Role="InventoryModifiers" Multiplicity="*" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
+          <End Role="InventoryModifiers" Type="Self.InventoryModifiers" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Inventory">
               <PropertyRef Name="Id" />
@@ -368,8 +331,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Slot_Inventory">
-          <End Type="InventoryDataBaseModel.Inventory" Role="Inventory" Multiplicity="1" />
-          <End Type="InventoryDataBaseModel.Slot" Role="Slot" Multiplicity="*" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
+          <End Role="Slot" Type="Self.Slot" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Inventory">
               <PropertyRef Name="Id" />
@@ -380,8 +343,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_InventoryModifiers_InventorySlotModifiers">
-          <End Type="InventoryDataBaseModel.InventorySlotModifiers" Role="InventorySlotModifiers" Multiplicity="1" />
-          <End Type="InventoryDataBaseModel.InventoryModifiers" Role="InventoryModifiers" Multiplicity="*" />
+          <End Role="InventorySlotModifiers" Type="Self.InventorySlotModifiers" Multiplicity="1" />
+          <End Role="InventoryModifiers" Type="Self.InventoryModifiers" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="InventorySlotModifiers">
               <PropertyRef Name="Id" />
@@ -392,8 +355,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_InventorySlotModifiers_TypeModifires">
-          <End Type="InventoryDataBaseModel.TypeModifires" Role="TypeModifires" Multiplicity="1" />
-          <End Type="InventoryDataBaseModel.InventorySlotModifiers" Role="InventorySlotModifiers" Multiplicity="*" />
+          <End Role="TypeModifires" Type="Self.TypeModifires" Multiplicity="1" />
+          <End Role="InventorySlotModifiers" Type="Self.InventorySlotModifiers" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TypeModifires">
               <PropertyRef Name="Id" />
@@ -404,8 +367,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Slot_InventorySlotModifiers">
-          <End Type="InventoryDataBaseModel.InventorySlotModifiers" Role="InventorySlotModifiers" Multiplicity="1" />
-          <End Type="InventoryDataBaseModel.Slot" Role="Slot" Multiplicity="*" />
+          <End Role="InventorySlotModifiers" Type="Self.InventorySlotModifiers" Multiplicity="1" />
+          <End Role="Slot" Type="Self.Slot" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="InventorySlotModifiers">
               <PropertyRef Name="Id" />
@@ -416,8 +379,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Slot_Item">
-          <End Type="InventoryDataBaseModel.Item" Role="Item" Multiplicity="0..1" />
-          <End Type="InventoryDataBaseModel.Slot" Role="Slot" Multiplicity="*" />
+          <End Role="Item" Type="Self.Item" Multiplicity="0..1" />
+          <End Role="Slot" Type="Self.Slot" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Item">
               <PropertyRef Name="Id" />
@@ -427,97 +390,135 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="InventoryDataBaseEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admin" EntityType="Self.Admin" />
+          <EntitySet Name="Inventory" EntityType="Self.Inventory" />
+          <EntitySet Name="InventoryModifiers" EntityType="Self.InventoryModifiers" />
+          <EntitySet Name="InventorySlotModifiers" EntityType="Self.InventorySlotModifiers" />
+          <EntitySet Name="Item" EntityType="Self.Item" />
+          <EntitySet Name="Slot" EntityType="Self.Slot" />
+          <EntitySet Name="TypeModifires" EntityType="Self.TypeModifires" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <AssociationSet Name="FK_Inventory_User" Association="Self.FK_Inventory_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryModifiers_Inventory" Association="Self.FK_InventoryModifiers_Inventory">
+            <End Role="Inventory" EntitySet="Inventory" />
+            <End Role="InventoryModifiers" EntitySet="InventoryModifiers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Slot_Inventory" Association="Self.FK_Slot_Inventory">
+            <End Role="Inventory" EntitySet="Inventory" />
+            <End Role="Slot" EntitySet="Slot" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryModifiers_InventorySlotModifiers" Association="Self.FK_InventoryModifiers_InventorySlotModifiers">
+            <End Role="InventorySlotModifiers" EntitySet="InventorySlotModifiers" />
+            <End Role="InventoryModifiers" EntitySet="InventoryModifiers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventorySlotModifiers_TypeModifires" Association="Self.FK_InventorySlotModifiers_TypeModifires">
+            <End Role="TypeModifires" EntitySet="TypeModifires" />
+            <End Role="InventorySlotModifiers" EntitySet="InventorySlotModifiers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Slot_InventorySlotModifiers" Association="Self.FK_Slot_InventorySlotModifiers">
+            <End Role="InventorySlotModifiers" EntitySet="InventorySlotModifiers" />
+            <End Role="Slot" EntitySet="Slot" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Slot_Item" Association="Self.FK_Slot_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="Slot" EntitySet="Slot" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище InventoryDataBaseModelContainer" CdmEntityContainer="InventoryDataBaseEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище InventoryDataBaseModelContainer" CdmEntityContainer="InventoryDataBaseEntities1">
           <EntitySetMapping Name="Admin">
             <EntityTypeMapping TypeName="InventoryDataBaseModel.Admin">
               <MappingFragment StoreEntitySet="Admin">
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Inventory">
             <EntityTypeMapping TypeName="InventoryDataBaseModel.Inventory">
               <MappingFragment StoreEntitySet="Inventory">
-                <ScalarProperty Name="CurrentWeight" ColumnName="CurrentWeight" />
-                <ScalarProperty Name="MaxWeight" ColumnName="MaxWeight" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="MaxWeight" ColumnName="MaxWeight" />
+                <ScalarProperty Name="CurrentWeight" ColumnName="CurrentWeight" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="InventoryModifiers">
             <EntityTypeMapping TypeName="InventoryDataBaseModel.InventoryModifiers">
               <MappingFragment StoreEntitySet="InventoryModifiers">
-                <ScalarProperty Name="WeightStorage" ColumnName="WeightStorage" />
-                <ScalarProperty Name="InventorySlotModifiersId" ColumnName="InventorySlotModifiersId" />
-                <ScalarProperty Name="InventoryId" ColumnName="InventoryId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="InventoryId" ColumnName="InventoryId" />
+                <ScalarProperty Name="InventorySlotModifiersId" ColumnName="InventorySlotModifiersId" />
+                <ScalarProperty Name="WeightStorage" ColumnName="WeightStorage" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="InventorySlotModifiers">
             <EntityTypeMapping TypeName="InventoryDataBaseModel.InventorySlotModifiers">
               <MappingFragment StoreEntitySet="InventorySlotModifiers">
-                <ScalarProperty Name="MainImage" ColumnName="MainImage" />
-                <ScalarProperty Name="MaxCapacity" ColumnName="MaxCapacity" />
-                <ScalarProperty Name="Slots" ColumnName="Slots" />
-                <ScalarProperty Name="TypeModifiresId" ColumnName="TypeModifiresId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TypeModifiresId" ColumnName="TypeModifiresId" />
+                <ScalarProperty Name="Slots" ColumnName="Slots" />
+                <ScalarProperty Name="MaxCapacity" ColumnName="MaxCapacity" />
+                <ScalarProperty Name="MainImage" ColumnName="MainImage" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Item">
             <EntityTypeMapping TypeName="InventoryDataBaseModel.Item">
               <MappingFragment StoreEntitySet="Item">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Weight" ColumnName="Weight" />
-                <ScalarProperty Name="MainImage" ColumnName="MainImage" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="MainImage" ColumnName="MainImage" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Slot">
             <EntityTypeMapping TypeName="InventoryDataBaseModel.Slot">
               <MappingFragment StoreEntitySet="Slot">
-                <ScalarProperty Name="QuantityItem" ColumnName="QuantityItem" />
-                <ScalarProperty Name="StorageId" ColumnName="StorageId" />
-                <ScalarProperty Name="InventoryId" ColumnName="InventoryId" />
-                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="InventoryId" ColumnName="InventoryId" />
+                <ScalarProperty Name="StorageId" ColumnName="StorageId" />
+                <ScalarProperty Name="QuantityItem" ColumnName="QuantityItem" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TypeModifires">
             <EntityTypeMapping TypeName="InventoryDataBaseModel.TypeModifires">
               <MappingFragment StoreEntitySet="TypeModifires">
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="InventoryDataBaseModel.User">
               <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Login" ColumnName="Login" />
-                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

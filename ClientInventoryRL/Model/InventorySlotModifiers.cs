@@ -12,8 +12,22 @@ namespace ClientInventoryRL.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class InventorySlotModifiers
+    public partial class InventorySlotModifiers : System.ComponentModel.INotifyPropertyChanged
     {
+    
+    
+    #region Implement INotifyPropertyChanged
+     
+    public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+    public void OnPropertyChanged([System.Runtime.CompilerServices.CallerMemberName]string prop = "")
+    {
+        if (PropertyChanged != null)
+            PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(prop));
+    }
+     
+     #endregion
+    
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public InventorySlotModifiers()
         {
@@ -21,17 +35,158 @@ namespace ClientInventoryRL.Model
             this.Slot = new HashSet<Slot>();
         }
     
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public int TypeModifiresId { get; set; }
-        public int Slots { get; set; }
-        public float MaxCapacity { get; set; }
-        public byte[] MainImage { get; set; }
+        private int _Id;
+        public int Id 
+        { 
+            get
+            {
+                return _Id;
+            } 
+            set
+            {
+                if(_Id != value)
+                {
+                    _Id = value;
+                    OnPropertyChanged("Id");
+                }
+            }
+        }
+                 
+        private string _Name;
+        public string Name 
+        { 
+            get
+            {
+                return _Name;
+            } 
+            set
+            {
+                if(_Name != value)
+                {
+                    _Name = value;
+                    OnPropertyChanged("Name");
+                }
+            }
+        }
+                 
+        private int _TypeModifiresId;
+        public int TypeModifiresId 
+        { 
+            get
+            {
+                return _TypeModifiresId;
+            } 
+            set
+            {
+                if(_TypeModifiresId != value)
+                {
+                    _TypeModifiresId = value;
+                    OnPropertyChanged("TypeModifiresId");
+                }
+            }
+        }
+                 
+        private int _Slots;
+        public int Slots 
+        { 
+            get
+            {
+                return _Slots;
+            } 
+            set
+            {
+                if(_Slots != value)
+                {
+                    _Slots = value;
+                    OnPropertyChanged("Slots");
+                }
+            }
+        }
+                 
+        private float _MaxCapacity;
+        public float MaxCapacity 
+        { 
+            get
+            {
+                return _MaxCapacity;
+            } 
+            set
+            {
+                if(_MaxCapacity != value)
+                {
+                    _MaxCapacity = value;
+                    OnPropertyChanged("MaxCapacity");
+                }
+            }
+        }
+                 
+        private byte[] _MainImage;
+        public byte[] MainImage 
+        { 
+            get
+            {
+                return _MainImage;
+            } 
+            set
+            {
+                if(_MainImage != value)
+                {
+                    _MainImage = value;
+                    OnPropertyChanged("MainImage");
+                }
+            }
+        }
+                 
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<InventoryModifiers> InventoryModifiers { get; set; }
-        public virtual TypeModifires TypeModifires { get; set; }
+        private ICollection<InventoryModifiers> _InventoryModifiers;
+        public virtual ICollection<InventoryModifiers> InventoryModifiers 
+        { 
+            get
+            {
+                return _InventoryModifiers;
+            } 
+            set
+            {
+                if(_InventoryModifiers != value)
+                {
+                    _InventoryModifiers = value;
+                    OnPropertyChanged("InventoryModifiers");
+                }
+            }
+        }
+        private TypeModifires _TypeModifires;
+        public virtual TypeModifires TypeModifires 
+        { 
+            get
+            {
+                return _TypeModifires;
+            } 
+            set
+            {
+                if(_TypeModifires != value)
+                {
+                    _TypeModifires = value;
+                    OnPropertyChanged("TypeModifires");
+                }
+            }
+        }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Slot> Slot { get; set; }
+        private ICollection<Slot> _Slot;
+        public virtual ICollection<Slot> Slot 
+        { 
+            get
+            {
+                return _Slot;
+            } 
+            set
+            {
+                if(_Slot != value)
+                {
+                    _Slot = value;
+                    OnPropertyChanged("Slot");
+                }
+            }
+        }
     }
 }

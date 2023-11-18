@@ -12,10 +12,72 @@ namespace ClientInventoryRL.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Admin
+    public partial class Admin : System.ComponentModel.INotifyPropertyChanged
     {
-        public int Id { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
+    
+    
+    #region Implement INotifyPropertyChanged
+     
+    public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+    public void OnPropertyChanged([System.Runtime.CompilerServices.CallerMemberName]string prop = "")
+    {
+        if (PropertyChanged != null)
+            PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(prop));
+    }
+     
+     #endregion
+    
+    
+        private int _Id;
+        public int Id 
+        { 
+            get
+            {
+                return _Id;
+            } 
+            set
+            {
+                if(_Id != value)
+                {
+                    _Id = value;
+                    OnPropertyChanged("Id");
+                }
+            }
+        }
+                 
+        private string _Login;
+        public string Login 
+        { 
+            get
+            {
+                return _Login;
+            } 
+            set
+            {
+                if(_Login != value)
+                {
+                    _Login = value;
+                    OnPropertyChanged("Login");
+                }
+            }
+        }
+                 
+        private string _Password;
+        public string Password 
+        { 
+            get
+            {
+                return _Password;
+            } 
+            set
+            {
+                if(_Password != value)
+                {
+                    _Password = value;
+                    OnPropertyChanged("Password");
+                }
+            }
+        }
+                 
     }
 }

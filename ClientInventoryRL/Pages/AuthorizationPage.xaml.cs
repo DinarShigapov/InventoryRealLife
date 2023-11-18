@@ -53,5 +53,10 @@ namespace ClientInventoryRL.Pages
         {
             NavigationService.Navigate(new ForgotPasswordPage());
         }
+
+        private void Image_IsMouseCapturedChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+
+        }
     }
 }

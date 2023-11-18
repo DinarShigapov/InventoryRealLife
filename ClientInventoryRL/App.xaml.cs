@@ -14,7 +14,7 @@ namespace ClientInventoryRL
     /// </summary>
     public partial class App : Application
     {
-        public static InventoryDataBaseEntities DB = new InventoryDataBaseEntities();
+        public static InventoryDataBaseEntities1 DB = new InventoryDataBaseEntities1();
         public static User LoggedUser;
     }
 }

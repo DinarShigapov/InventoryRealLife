@@ -12,8 +12,22 @@ namespace ClientInventoryRL.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Inventory
+    public partial class Inventory : System.ComponentModel.INotifyPropertyChanged
     {
+    
+    
+    #region Implement INotifyPropertyChanged
+     
+    public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+    public void OnPropertyChanged([System.Runtime.CompilerServices.CallerMemberName]string prop = "")
+    {
+        if (PropertyChanged != null)
+            PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(prop));
+    }
+     
+     #endregion
+    
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Inventory()
         {
@@ -21,15 +35,124 @@ namespace ClientInventoryRL.Model
             this.Slot = new HashSet<Slot>();
         }
     
-        public int Id { get; set; }
-        public int UserId { get; set; }
-        public float MaxWeight { get; set; }
-        public float CurrentWeight { get; set; }
+        private int _Id;
+        public int Id 
+        { 
+            get
+            {
+                return _Id;
+            } 
+            set
+            {
+                if(_Id != value)
+                {
+                    _Id = value;
+                    OnPropertyChanged("Id");
+                }
+            }
+        }
+                 
+        private int _UserId;
+        public int UserId 
+        { 
+            get
+            {
+                return _UserId;
+            } 
+            set
+            {
+                if(_UserId != value)
+                {
+                    _UserId = value;
+                    OnPropertyChanged("UserId");
+                }
+            }
+        }
+                 
+        private float _MaxWeight;
+        public float MaxWeight 
+        { 
+            get
+            {
+                return _MaxWeight;
+            } 
+            set
+            {
+                if(_MaxWeight != value)
+                {
+                    _MaxWeight = value;
+                    OnPropertyChanged("MaxWeight");
+                }
+            }
+        }
+                 
+        private float _CurrentWeight;
+        public float CurrentWeight 
+        { 
+            get
+            {
+                return _CurrentWeight;
+            } 
+            set
+            {
+                if(_CurrentWeight != value)
+                {
+                    _CurrentWeight = value;
+                    OnPropertyChanged("CurrentWeight");
+                }
+            }
+        }
+                 
     
-        public virtual User User { get; set; }
+        private User _User;
+        public virtual User User 
+        { 
+            get
+            {
+                return _User;
+            } 
+            set
+            {
+                if(_User != value)
+                {
+                    _User = value;
+                    OnPropertyChanged("User");
+                }
+            }
+        }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<InventoryModifiers> InventoryModifiers { get; set; }
+        private ICollection<InventoryModifiers> _InventoryModifiers;
+        public virtual ICollection<InventoryModifiers> InventoryModifiers 
+        { 
+            get
+            {
+                return _InventoryModifiers;
+            } 
+            set
+            {
+                if(_InventoryModifiers != value)
+                {
+                    _InventoryModifiers = value;
+                    OnPropertyChanged("InventoryModifiers");
+                }
+            }
+        }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Slot> Slot { get; set; }
+        private ICollection<Slot> _Slot;
+        public virtual ICollection<Slot> Slot 
+        { 
+            get
+            {
+                return _Slot;
+            } 
+            set
+            {
+                if(_Slot != value)
+                {
+                    _Slot = value;
+                    OnPropertyChanged("Slot");
+                }
+            }
+        }
     }
 }

@@ -12,22 +12,147 @@ namespace ClientInventoryRL.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Item
+    public partial class Item : System.ComponentModel.INotifyPropertyChanged
     {
+    
+    
+    #region Implement INotifyPropertyChanged
+     
+    public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+    public void OnPropertyChanged([System.Runtime.CompilerServices.CallerMemberName]string prop = "")
+    {
+        if (PropertyChanged != null)
+            PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(prop));
+    }
+     
+     #endregion
+    
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Item()
         {
             this.Slot = new HashSet<Slot>();
         }
     
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public byte[] MainImage { get; set; }
-        public float Weight { get; set; }
-        public Nullable<int> UserId { get; set; }
+        private int _Id;
+        public int Id 
+        { 
+            get
+            {
+                return _Id;
+            } 
+            set
+            {
+                if(_Id != value)
+                {
+                    _Id = value;
+                    OnPropertyChanged("Id");
+                }
+            }
+        }
+                 
+        private string _Name;
+        public string Name 
+        { 
+            get
+            {
+                return _Name;
+            } 
+            set
+            {
+                if(_Name != value)
+                {
+                    _Name = value;
+                    OnPropertyChanged("Name");
+                }
+            }
+        }
+                 
+        private string _Description;
+        public string Description 
+        { 
+            get
+            {
+                return _Description;
+            } 
+            set
+            {
+                if(_Description != value)
+                {
+                    _Description = value;
+                    OnPropertyChanged("Description");
+                }
+            }
+        }
+                 
+        private byte[] _MainImage;
+        public byte[] MainImage 
+        { 
+            get
+            {
+                return _MainImage;
+            } 
+            set
+            {
+                if(_MainImage != value)
+                {
+                    _MainImage = value;
+                    OnPropertyChanged("MainImage");
+                }
+            }
+        }
+                 
+        private float _Weight;
+        public float Weight 
+        { 
+            get
+            {
+                return _Weight;
+            } 
+            set
+            {
+                if(_Weight != value)
+                {
+                    _Weight = value;
+                    OnPropertyChanged("Weight");
+                }
+            }
+        }
+                 
+        private Nullable<int> _UserId;
+        public Nullable<int> UserId 
+        { 
+            get
+            {
+                return _UserId;
+            } 
+            set
+            {
+                if(_UserId != value)
+                {
+                    _UserId = value;
+                    OnPropertyChanged("UserId");
+                }
+            }
+        }
+                 
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Slot> Slot { get; set; }
+        private ICollection<Slot> _Slot;
+        public virtual ICollection<Slot> Slot 
+        { 
+            get
+            {
+                return _Slot;
+            } 
+            set
+            {
+                if(_Slot != value)
+                {
+                    _Slot = value;
+                    OnPropertyChanged("Slot");
+                }
+            }
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,17 +12,23 @@ namespace ClientInventoryRL.Model
 {
     public partial class Inventory
     {
+
+        private InventorySlotModifiers _clothesModifiers;
         public InventorySlotModifiers ClothesModifiers 
         {
-            get => InventoryModifiers.FirstOrDefault(
-                    x => x.InventorySlotModifiers.TypeModifiresId == (int)ModifiresType.Clothes)?.InventorySlotModifiers;
-            set 
+            get 
             {
-
-                SetNewModifires(ModifiresType.Clothes, value);
-
+                return InventoryModifiers.FirstOrDefault(
+                    x => x.InventorySlotModifiers.TypeModifiresId == (int)ModifiresType.Clothes)?.InventorySlotModifiers;
             }
+            set
+            {
+                SetNewModifires(ModifiresType.Clothes, value);
+            }
+
         }
+
+
         public InventorySlotModifiers BackpackModifiers
         {
             get => InventoryModifiers.FirstOrDefault(
@@ -74,6 +81,7 @@ namespace ClientInventoryRL.Model
                         bagMod = value;
                     }
 
+                    OnUpdateObject();
 
                 }
 
@@ -86,8 +94,10 @@ namespace ClientInventoryRL.Model
                 App.DB.Slot.Remove(item);
             }
 
-            var deleteModifires = App.DB.InventoryModifiers.FirstOrDefault(x => x.InventorySlotModifiers.Id == modifiers.Id && UserId == App.LoggedUser.Id);
+            var deleteModifires = App.LoggedUser.CurrentInventory.InventoryModifiers.FirstOrDefault(x => x.InventorySlotModifiers.Id == modifiers.Id && UserId == App.LoggedUser.Id);
             App.DB.InventoryModifiers.Remove(deleteModifires);
+
+            OnUpdateObject();
         }
         public string WarningText 
         {
@@ -153,6 +163,7 @@ namespace ClientInventoryRL.Model
                 return 0;
             }
         }
+
         public double CurrentWeightInventory
         {
             get 
@@ -163,6 +174,7 @@ namespace ClientInventoryRL.Model
                 }
                 return 0;
             }
+
         }
         public double MaxWeightInventory
         {
@@ -174,12 +186,35 @@ namespace ClientInventoryRL.Model
                 }
                 return 0;
             }
+            set 
+            {
+                if (MaxWeightInventory != value)
+                {
+                    MaxWeightInventory = value;
+                    OnPropertyChanged("MaxWeightInventory");
+                }
+            }
         }
+
+
+        private void OnUpdateObject() 
+        {
+            string strings = "";
+            foreach (var prop in this.GetType().GetProperties())
+            {
+                OnPropertyChanged($"{prop.Name}");
+                strings += $"{prop.Name}\n";
+            }
+            MessageBox.Show(strings);
+
+        }
+
+
         public CollectionView CollectionSlots
         {
             get 
             {
-                var view = (CollectionView)CollectionViewSource.GetDefaultView(Slot.OrderBy(x => x.InventorySlotModifiers.TypeModifiresId).ToList());
+                var view = (CollectionView)CollectionViewSource.GetDefaultView(Slot.OrderBy(x => x.InventorySlotModifiers.TypeModifiresId));
                 PropertyGroupDescription groupDescription = new PropertyGroupDescription("InventorySlotModifiers.TypeModifires.Name");
                 view.GroupDescriptions.Add(groupDescription);
 

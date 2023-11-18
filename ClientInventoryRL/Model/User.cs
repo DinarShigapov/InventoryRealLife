@@ -12,26 +12,215 @@ namespace ClientInventoryRL.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class User : System.ComponentModel.INotifyPropertyChanged
     {
+    
+    
+    #region Implement INotifyPropertyChanged
+     
+    public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+    public void OnPropertyChanged([System.Runtime.CompilerServices.CallerMemberName]string prop = "")
+    {
+        if (PropertyChanged != null)
+            PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(prop));
+    }
+     
+     #endregion
+    
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
             this.Inventory = new HashSet<Inventory>();
         }
     
-        public int Id { get; set; }
-        public string LastName { get; set; }
-        public string FirstName { get; set; }
-        public string Patronymic { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
-        public byte[] ProfileImage { get; set; }
-        public string Phone { get; set; }
-        public string Email { get; set; }
-        public bool IsDelete { get; set; }
+        private int _Id;
+        public int Id 
+        { 
+            get
+            {
+                return _Id;
+            } 
+            set
+            {
+                if(_Id != value)
+                {
+                    _Id = value;
+                    OnPropertyChanged("Id");
+                }
+            }
+        }
+                 
+        private string _LastName;
+        public string LastName 
+        { 
+            get
+            {
+                return _LastName;
+            } 
+            set
+            {
+                if(_LastName != value)
+                {
+                    _LastName = value;
+                    OnPropertyChanged("LastName");
+                }
+            }
+        }
+                 
+        private string _FirstName;
+        public string FirstName 
+        { 
+            get
+            {
+                return _FirstName;
+            } 
+            set
+            {
+                if(_FirstName != value)
+                {
+                    _FirstName = value;
+                    OnPropertyChanged("FirstName");
+                }
+            }
+        }
+                 
+        private string _Patronymic;
+        public string Patronymic 
+        { 
+            get
+            {
+                return _Patronymic;
+            } 
+            set
+            {
+                if(_Patronymic != value)
+                {
+                    _Patronymic = value;
+                    OnPropertyChanged("Patronymic");
+                }
+            }
+        }
+                 
+        private string _Login;
+        public string Login 
+        { 
+            get
+            {
+                return _Login;
+            } 
+            set
+            {
+                if(_Login != value)
+                {
+                    _Login = value;
+                    OnPropertyChanged("Login");
+                }
+            }
+        }
+                 
+        private string _Password;
+        public string Password 
+        { 
+            get
+            {
+                return _Password;
+            } 
+            set
+            {
+                if(_Password != value)
+                {
+                    _Password = value;
+                    OnPropertyChanged("Password");
+                }
+            }
+        }
+                 
+        private byte[] _ProfileImage;
+        public byte[] ProfileImage 
+        { 
+            get
+            {
+                return _ProfileImage;
+            } 
+            set
+            {
+                if(_ProfileImage != value)
+                {
+                    _ProfileImage = value;
+                    OnPropertyChanged("ProfileImage");
+                }
+            }
+        }
+                 
+        private string _Phone;
+        public string Phone 
+        { 
+            get
+            {
+                return _Phone;
+            } 
+            set
+            {
+                if(_Phone != value)
+                {
+                    _Phone = value;
+                    OnPropertyChanged("Phone");
+                }
+            }
+        }
+                 
+        private string _Email;
+        public string Email 
+        { 
+            get
+            {
+                return _Email;
+            } 
+            set
+            {
+                if(_Email != value)
+                {
+                    _Email = value;
+                    OnPropertyChanged("Email");
+                }
+            }
+        }
+                 
+        private bool _IsDelete;
+        public bool IsDelete 
+        { 
+            get
+            {
+                return _IsDelete;
+            } 
+            set
+            {
+                if(_IsDelete != value)
+                {
+                    _IsDelete = value;
+                    OnPropertyChanged("IsDelete");
+                }
+            }
+        }
+                 
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Inventory> Inventory { get; set; }
+        private ICollection<Inventory> _Inventory;
+        public virtual ICollection<Inventory> Inventory 
+        { 
+            get
+            {
+                return _Inventory;
+            } 
+            set
+            {
+                if(_Inventory != value)
+                {
+                    _Inventory = value;
+                    OnPropertyChanged("Inventory");
+                }
+            }
+        }
     }
 }

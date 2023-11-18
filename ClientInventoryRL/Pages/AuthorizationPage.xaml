@@ -23,80 +23,109 @@
         </Style>
     </Page.Resources>
     <Grid>
-        <Grid Grid.Row="1"
-              Grid.RowSpan="4">
-            <Rectangle Fill="#FF323329"/>
-            <Image Source="/Resources/background.png" 
-                Stretch="UniformToFill" 
-                Opacity="0.06" />
-        </Grid>
-        <Border VerticalAlignment="Center"
-                HorizontalAlignment="Center"
-                Width="220"
-                CornerRadius="10"
-                Background="#FF4A4C38"
-                BorderBrush="#FF272727"
-                BorderThickness="1">
-            <Grid>
-                <Grid Margin="20">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="10"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="5"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="10"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="10"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Text="Авторизация"
-                               Background="#FF30312A"
-                               Padding="20 0"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               FontSize="16"/>
-                    <StackPanel Grid.Row="2">
-                        <TextBlock Text="Логин"
-                           Opacity="0.5"
-                           FontSize="12"/>
-                        <TextBox Text="{Binding Login}"
-                         FontFamily="11"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="1"
+                    Background="Transparent">
+                <Border.Effect>
+                    <DropShadowEffect Color="Black" ShadowDepth="1" BlurRadius="10" Opacity="0.4" Direction="311"/>
+                </Border.Effect>
+                <Grid>
+                    <Image Source="/Resources/backgroundMenu.png" 
+                           Grid.Column="1"
+                           Stretch="UniformToFill"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center">
+                        <Image.BitmapEffect>
+                            <DropShadowBitmapEffect Color="Black"/>
+                        </Image.BitmapEffect>
+                    </Image>
+                    <Rectangle Fill="#FF976161" Opacity="0.68"/>
+                    <StackPanel VerticalAlignment="Center"
+                                HorizontalAlignment="Center">
+                        <Image Source="/Resources/LogoTest.png" 
+                               Width="100"
+                               RenderOptions.BitmapScalingMode="Fant"
+                               Height="100"/>
+                        <TextBlock Text="INVENTORY" 
+                                   FontSize="20"
+                                   HorizontalAlignment="Center"
+                                   Foreground="White" 
+                                   FontFamily="Bahnschrift Light"/>
                     </StackPanel>
-                    <StackPanel Grid.Row="4">
-                        <TextBlock Text="Пароль"
-                           Opacity="0.5"
-                           FontSize="12"/>
-                        <TextBox Text="{Binding Password}"
-                         FontFamily="11"/>
-                    </StackPanel>
-                    <Grid Grid.Row="6">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition Width="10"/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <Button Content="Регистрация"
-                        Grid.Column="0"
-                        FontSize="10"
-                        x:Name="BSignUp"
-                        Click="BSignUp_Click"/>
-                        <Button Content="Войти"
-                        Grid.Column="2"
-                        x:Name="BSignIn"
-                        Click="BSignIn_Click"/>
-                    </Grid>
-                    <TextBlock x:Name="TBForgotPassword" 
-                       Text="Восстановить пароль"
-                       TextWrapping="Wrap"
-                       TextAlignment="Center"
-                       FontSize="10"
-                       Grid.Row="8"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       MouseDown="TBForgotPassword_MouseDown"/>
                 </Grid>
+            </Border>
+            <Grid Margin="20"
+                  Width="200"
+                  VerticalAlignment="Center"
+                  HorizontalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="АВТОРИЗАЦИЯ"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontSize="20" Foreground="#FFAD2E24"/>
+                <GroupBox Header="Логин"
+                          FontFamily="Resources/Fonts/#JetBrains Mono"
+                          Foreground="#FFD2D2D2"
+                          Grid.Row="2"
+                          Padding="0 3 0 0">
+                    <TextBox Text="{Binding Login}"
+                             FontFamily="11"
+                             BorderThickness="0 0 0 1"
+                             Style="{StaticResource TextBoxFont}"/>
+                </GroupBox>
+                <GroupBox Header="Пароль"
+                          FontFamily="Resources/Fonts/#JetBrains Mono"
+                          Foreground="#FFD2D2D2"
+                          Grid.Row="4"
+                          Padding="0 3 0 0">
+                    <TextBox Text="{Binding Password}"
+                             FontFamily="11"
+                             BorderThickness="0 0 0 1"
+                             Style="{StaticResource TextBoxFont}"/>
+                    </GroupBox>
+                    <Grid Grid.Row="6" VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Content="Регистрация"
+                            x:Name="BSignUp"
+                            Padding="20 4"
+                            Style="{StaticResource RoundBtnStyle}"
+                            Click="BSignUp_Click" Background="#FF2B2B2B"/>
+                    <Button Content="Войти"
+                            Grid.Column="2"
+                            Padding="20 4"
+                            Style="{StaticResource RoundBtnStyle}"
+                            x:Name="BSignIn"
+                            Background="#FFAD2E24"
+                            Click="BSignIn_Click"/>
+                </Grid>
+                <TextBlock x:Name="TBForgotPassword" 
+                           Text="Восстановить пароль"
+                           TextWrapping="Wrap"
+                           TextAlignment="Center"
+                           FontSize="10"
+                           Grid.Row="8"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           MouseDown="TBForgotPassword_MouseDown"/>
             </Grid>
-        </Border>
+        </Grid>
     </Grid>
 </Page>

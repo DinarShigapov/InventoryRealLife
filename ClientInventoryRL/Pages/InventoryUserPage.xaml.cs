@@ -59,19 +59,18 @@ namespace ClientInventoryRL.Pages
         {
             _mediaPlayer = new MediaPlayer();
             _mediaPlayer.Volume = _mediaPlayer.Volume / 25.0f;
-            _mediaPlayer.Open(new Uri(@"Resources/MouseEnterSound.wav", UriKind.Relative));
+            _mediaPlayer.Open(new Uri(@"Resources/Sounds/MouseEnterSound.wav", UriKind.Relative));
+
+
+            MediaPlayer soundLoaded = new MediaPlayer();
+            soundLoaded.Volume = soundLoaded.Volume / 10.0f;
+            soundLoaded.Open(new Uri(@"Resources/Sounds/SoundOpenBackpack.wav", UriKind.Relative));
+            soundLoaded.Play();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
-            //var sd = App.DB.InventorySlotModifiers.ToList();
-            //sd[1].MainImage = File.ReadAllBytes(@"C:\Users\262023\source\repos\InventoryRealLife\ClientInventoryRL\Resources\rukzak.png");
-            //App.DB.SaveChanges();
-
-
-            _ = App.LoggedUser;
-            App.DB.SaveChanges();
+            App.DB.SaveChangesAsync();
         }
 
         private void MIAddNewItem_Click(object sender, RoutedEventArgs e)
@@ -123,10 +122,6 @@ namespace ClientInventoryRL.Pages
                     break;
             }
 
-            this.DataContext = null;
-            this.DataContext = App.LoggedUser;
-
-
         }
 
         private void MIDeleteModifires_Click(object sender, RoutedEventArgs e)
@@ -134,12 +129,7 @@ namespace ClientInventoryRL.Pages
             var selectedModifires = (sender as MenuItem).DataContext as InventorySlotModifiers;
             if (selectedModifires == null)
                 return;
-
-
             App.LoggedUser.CurrentInventory.RemoveModifires(selectedModifires);
-            this.DataContext = null;
-            this.DataContext = App.LoggedUser;
-
         }
 
         private void FullName_MouseDown(object sender, MouseButtonEventArgs e)
@@ -152,6 +142,11 @@ namespace ClientInventoryRL.Pages
             StreamResourceInfo sri = Application.GetResourceStream(new Uri("C:\\Users\\262023\\source\\repos\\InventoryRealLife\\ClientInventoryRL\\Resources\\HandMoveGrab.cur", UriKind.Relative));
             Cursor customCursor = new Cursor(sri.Stream);
             (sender as Border).Cursor = customCursor;
+        }
+
+        private void Border_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

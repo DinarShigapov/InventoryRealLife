@@ -12,14 +12,122 @@ namespace ClientInventoryRL.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class InventoryModifiers
+    public partial class InventoryModifiers : System.ComponentModel.INotifyPropertyChanged
     {
-        public int Id { get; set; }
-        public int InventoryId { get; set; }
-        public int InventorySlotModifiersId { get; set; }
-        public float WeightStorage { get; set; }
     
-        public virtual Inventory Inventory { get; set; }
-        public virtual InventorySlotModifiers InventorySlotModifiers { get; set; }
+    
+    #region Implement INotifyPropertyChanged
+     
+    public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+    public void OnPropertyChanged([System.Runtime.CompilerServices.CallerMemberName]string prop = "")
+    {
+        if (PropertyChanged != null)
+            PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(prop));
+    }
+     
+     #endregion
+    
+    
+        private int _Id;
+        public int Id 
+        { 
+            get
+            {
+                return _Id;
+            } 
+            set
+            {
+                if(_Id != value)
+                {
+                    _Id = value;
+                    OnPropertyChanged("Id");
+                }
+            }
+        }
+                 
+        private int _InventoryId;
+        public int InventoryId 
+        { 
+            get
+            {
+                return _InventoryId;
+            } 
+            set
+            {
+                if(_InventoryId != value)
+                {
+                    _InventoryId = value;
+                    OnPropertyChanged("InventoryId");
+                }
+            }
+        }
+                 
+        private int _InventorySlotModifiersId;
+        public int InventorySlotModifiersId 
+        { 
+            get
+            {
+                return _InventorySlotModifiersId;
+            } 
+            set
+            {
+                if(_InventorySlotModifiersId != value)
+                {
+                    _InventorySlotModifiersId = value;
+                    OnPropertyChanged("InventorySlotModifiersId");
+                }
+            }
+        }
+                 
+        private float _WeightStorage;
+        public float WeightStorage 
+        { 
+            get
+            {
+                return _WeightStorage;
+            } 
+            set
+            {
+                if(_WeightStorage != value)
+                {
+                    _WeightStorage = value;
+                    OnPropertyChanged("WeightStorage");
+                }
+            }
+        }
+                 
+    
+        private Inventory _Inventory;
+        public virtual Inventory Inventory 
+        { 
+            get
+            {
+                return _Inventory;
+            } 
+            set
+            {
+                if(_Inventory != value)
+                {
+                    _Inventory = value;
+                    OnPropertyChanged("Inventory");
+                }
+            }
+        }
+        private InventorySlotModifiers _InventorySlotModifiers;
+        public virtual InventorySlotModifiers InventorySlotModifiers 
+        { 
+            get
+            {
+                return _InventorySlotModifiers;
+            } 
+            set
+            {
+                if(_InventorySlotModifiers != value)
+                {
+                    _InventorySlotModifiers = value;
+                    OnPropertyChanged("InventorySlotModifiers");
+                }
+            }
+        }
     }
 }

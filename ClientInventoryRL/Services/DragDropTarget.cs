@@ -146,11 +146,7 @@ namespace ClientInventoryRL.Services
                         (dropInfo.TargetItem as Slot).QuantityItem = bufferSlot.QuantityItem;
                         (dropInfo.Data as Slot).Item = null;
                         (dropInfo.Data as Slot).QuantityItem = null;
-                        var vs = dropInfo.VisualTarget as ListBox;
-                        vs.Items.Refresh();
-
                     }
-
                 }
             }
         }
