@@ -273,7 +273,7 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Resources\Sounds\SoundOpenBackpack.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Resource Include="Resources\rukzak.png" />
     <Resource Include="Resources\background.png" />
@@ -292,7 +292,7 @@
     <Resource Include="Resources\backgroundMenu.png" />
     <Resource Include="Resources\LogoTest.png" />
     <Content Include="Resources\Sounds\MouseEnterSound.wav">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Resource Include="Resources\Waterbottle.png" />
   </ItemGroup>

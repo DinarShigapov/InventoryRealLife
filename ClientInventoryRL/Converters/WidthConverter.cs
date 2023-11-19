@@ -25,7 +25,6 @@ namespace ClientInventoryRL.Converters
                 double width = (double)value - dparam;
                 return (width > 0) ? width : 0;
             }
-
             return null;
         }
     }

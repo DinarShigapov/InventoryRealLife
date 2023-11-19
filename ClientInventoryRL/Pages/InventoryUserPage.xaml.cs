@@ -148,5 +148,11 @@ namespace ClientInventoryRL.Pages
         {
 
         }
+
+        private void LogOut_Click(object sender, RoutedEventArgs e)
+        {
+            App.LoggedUser = null;
+            NavigationService.Navigate(new AuthorizationPage());
+        }
     }
 }

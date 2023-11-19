@@ -13,6 +13,37 @@
             </ResourceDictionary.MergedDictionaries>
 
 
+            <Style TargetType="Button" x:Key="BtnStyle">
+                <Setter Property="FontFamily" Value="Resources/Fonts/#JetBrains Mono" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderBrush" Value="Black" />
+                <Setter x:Name="text" Property="Foreground" Value="#FF888888"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border x:Name="border" 
+                                    Background="{TemplateBinding Background}" 
+                                     BorderBrush="{TemplateBinding BorderBrush}" 
+                                     BorderThickness="{TemplateBinding BorderThickness}">
+                                <ContentPresenter x:Name="textblock" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="{TemplateBinding Padding}"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="textblock" Property="TextBlock.Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=BorderBrush}"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5" />
+                    </Style>
+                </Style.Resources>
+            </Style>
+
+
             <Style TargetType="Button" x:Key="RoundBtnStyle">
                 <Setter Property="FontFamily" Value="Resources/Fonts/#JetBrains Mono" />
                 <Setter Property="BorderThickness" Value="1" />

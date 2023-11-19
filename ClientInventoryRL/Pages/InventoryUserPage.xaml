@@ -81,7 +81,7 @@
                                FontFamily="Bahnschrift Light" 
                                FontSize="20"
                                VerticalAlignment="Bottom" />
-                    <Button Content="as" Click="Button_Click"/>
+                    <Button Content="SAVE" Click="Button_Click"/>
                 </StackPanel>
                 <ListBox ItemsSource="{Binding CurrentInventory.CollectionSlots}"
                          Grid.Row="2"
@@ -264,6 +264,12 @@
                                        Opacity="0.7"
                                        Style="{StaticResource TextBlockFont}"/>
                         </StackPanel>
+                        <Button Content="Выйти"
+                                Grid.Column="3"
+                                BorderBrush="#FFAD2E24"
+                                Margin="10 0"
+                                Style="{StaticResource BtnStyle}"
+                                Click="LogOut_Click"/>
                     </Grid>
                 </Border>
                 <Border

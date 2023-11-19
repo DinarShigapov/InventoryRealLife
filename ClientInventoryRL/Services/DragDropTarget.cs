@@ -62,51 +62,13 @@ namespace ClientInventoryRL.Services
 
         public void DragLeave(IDropInfo dropInfo)
         {
-            //if (element.Count > 0)
-            //{
-            //    foreach (var item in element)
-            //    {
-            //        if (item == dropInfo.VisualTargetItem)
-            //        {
-            //            continue;
-            //        }
 
-            //        var select = FindVisualChild<Border>(item);
-            //        select.BorderBrush = Brushes.Transparent;
-            //    }
-            //}
         }
 
         List<UIElement> element = new List<UIElement>();
 
         public void DragOver(IDropInfo dropInfo)
         {
-            //if (dropInfo.TargetItem != null && dropInfo.Data != dropInfo.TargetItem)
-            //{
-            //    var select = FindVisualChild<Border>(dropInfo.VisualTargetItem);
-            //    select.BorderBrush = Brushes.Red;
-            //    element.Add(dropInfo.VisualTargetItem);
-            //}
-
-            //if (element.Count > 0)
-            //{
-            //    foreach (var item in element)
-            //    {
-            //        if (item == dropInfo.VisualTargetItem)
-            //        {
-            //            continue;
-            //        }
-
-            //        element.Remove(item);
-
-            //        var select = FindVisualChild<Border>(item);
-            //        select.BorderBrush = Brushes.Transparent;
-            //    }
-            //}
-
-           
-
-
             if ((dropInfo.Data as Slot).Item == null)
             {
                 return;
@@ -122,8 +84,6 @@ namespace ClientInventoryRL.Services
 
             dropInfo.NotHandled = true;
             dropInfo.Effects = DragDropEffects.Move;
-
-
         }
 
         public void Drop(IDropInfo dropInfo)

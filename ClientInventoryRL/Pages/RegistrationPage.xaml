@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ClientInventoryRL.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="650" d:DesignWidth="1000"
       Title="RegistrationPage">
 
 
@@ -17,150 +17,145 @@
         </Style>
         <Style TargetType="TextBox" BasedOn="{StaticResource TextBoxFont}">
             <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="BorderThickness" Value="0 0 0 1"/>
         </Style>
     </Page.Resources>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="5"/>
-            <RowDefinition/>
-            <RowDefinition Height="5"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-
-        <Grid Grid.Row="1"
-              Grid.RowSpan="4">
-            <Rectangle Fill="#FF323329"/>
-            <Image Source="/Resources/background.png" 
-                Stretch="UniformToFill" 
-                Opacity="0.06" />
-        </Grid>
-        <Grid VerticalAlignment="Center"
-              HorizontalAlignment="Center"
-              Grid.Row="2">
+        <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="20"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Grid VerticalAlignment="Center"
-                  HorizontalAlignment="Center">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="10"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <TextBlock Text="Регистрация"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           FontSize="16" Foreground="Gainsboro"/>
-                <Grid Grid.Row="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="5"/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="8" x:Name="rowd"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="{Binding Height, ElementName=rowd, Mode=OneWay}"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="{Binding Height, ElementName=rowd, Mode=OneWay}"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="{Binding Height, ElementName=rowd, Mode=OneWay}"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="{Binding Height, ElementName=rowd, Mode=OneWay}"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="{Binding Height, ElementName=rowd, Mode=OneWay}"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-
-                    <TextBlock Text="Фамилия"/>
-                    <TextBlock Text="Имя"
-                           Grid.Row="2"/>
-                    <TextBlock Text="Отчество"
-                           Grid.Row="4"/>
-                    <TextBlock Text="Email"
-                           Grid.Row="6"/>
-                    <TextBlock Text="Телефон"
-                           Grid.Row="8"/>
-                    <TextBlock Text="Логин"
-                               Grid.Row="10"/>
-                    <TextBlock Text="Пароль"
-                               Grid.Row="12"/>
-
-                    <TextBox Text="{Binding LastName}"
-                             Grid.Column="2"
-                             Width="150"/>
-                    <TextBox Text="{Binding FirstName}"
-                         Grid.Row="2"
-                         Grid.Column="2"/>
-                    <TextBox Text="{Binding Patronymic}"
-                         Grid.Row="4"
-                         Grid.Column="2"/>
-                    <TextBox Text="{Binding Email}"
-                         Grid.Row="6"
-                         Grid.Column="2"/>
-                    <TextBox Text="{Binding Phone}"
-                             Grid.Row="8"
-                             Padding="10 0"
-                             Grid.Column="2"
-                             MaxLength="11"/>
-                    <TextBlock Text="+"
-                               Grid.Row="8"
-                               Padding="2 0 0 0"
-                               Grid.Column="2"
-                               HorizontalAlignment="Left" Foreground="Black"/>
-                    <TextBox Text="{Binding Login}"
-                             Grid.Row="10"
-                             Padding="10 0"
-                             Grid.Column="2"/>
-                    <TextBox Text="{Binding Password}"
-                             Grid.Row="12"
-                             Padding="10 0"
-                             Grid.Column="2"/>
-
-
-                </Grid>
-            </Grid>
-            <Border Grid.Column="2"
-                    BorderThickness="1"
-                    BorderBrush="Black"
-                    Width="150"
-                    Height="150">
+            <Border
+            Background="Transparent">
+                <Border.Effect>
+                    <DropShadowEffect Color="Black" ShadowDepth="1" BlurRadius="10" Opacity="0.4" Direction="311"/>
+                </Border.Effect>
                 <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Image Source="{Binding ProfileImage}"/>
-                    <Button x:Name="BUpload"
-                            Content="Установить"
-                            Grid.Row="1"
-                            Click="BUpload_Click"/>
+                    <Image Source="/Resources/backgroundMenu.png" 
+                       Grid.Column="1"
+                       Stretch="UniformToFill"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center">
+                        <Image.BitmapEffect>
+                            <DropShadowBitmapEffect Color="Black"/>
+                        </Image.BitmapEffect>
+                    </Image>
+                    <Rectangle Fill="#FF976161" Opacity="0.68"/>
+                    <StackPanel VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+                        <Image Source="/Resources/LogoTest.png" 
+                       Width="100"
+                       RenderOptions.BitmapScalingMode="Fant"
+                       Height="100"/>
+                        <TextBlock Text="INVENTORY" 
+                           FontSize="20"
+                           HorizontalAlignment="Center"
+                           Foreground="White" 
+                           FontFamily="Bahnschrift Light"/>
+                    </StackPanel>
                 </Grid>
             </Border>
-        </Grid>
-        <Grid Grid.Row="4"
-              Margin="5"
-              VerticalAlignment="Center"
-              HorizontalAlignment="Right">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="10"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <Button x:Name="BBackPage"
-                    Grid.Column="2"
-                    Padding="10 5"
+            <Button Grid.Column="1"
                     Content="Назад"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    Margin="10"
+                    Style="{StaticResource BtnStyle}"
                     Click="BBackPage_Click"/>
-            <Button x:Name="BSaveUser"
-                    Padding="10 5"
-                    Content="Сохранить"
-                    Click="BSaveUser_Click"/>
+            <Grid VerticalAlignment="Center"
+                  HorizontalAlignment="Center"
+                  Grid.Column="1"
+                  Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid VerticalAlignment="Center"
+                      HorizontalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="РЕГИСТРАЦИЯ"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontSize="20" Foreground="#FF2B2B2B"/>
+                    <Grid Grid.Row="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="8" x:Name="rowd"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="{Binding Height, ElementName=rowd, Mode=OneWay}"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="{Binding Height, ElementName=rowd, Mode=OneWay}"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="{Binding Height, ElementName=rowd, Mode=OneWay}"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <GroupBox Header="ФИО" Width="320">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="5"/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="5"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox Text="{Binding LastName}"/>
+                                <TextBox Text="{Binding FirstName}"
+                                         Grid.Column="2"/>
+                                <TextBox Text="{Binding Patronymic}"
+                                         Grid.Column="4"/>
+                            </Grid>
+                        </GroupBox>
+                        <GroupBox Header="Email"
+                                  Width="200"
+                                  HorizontalAlignment="Left"
+                                  Grid.Row="4"> 
+                            <TextBox Text="{Binding Email}"/>
+                        </GroupBox>
+                        <GroupBox Header="Телефон" 
+                                  Width="200"
+                                  HorizontalAlignment="Left"
+                                  Grid.Row="6">
+                            <Grid>
+                                <TextBox Text="{Binding Phone}"
+                                         Padding="10 0"
+                                         MaxLength="11"/>
+                                <TextBlock Text="+"
+                                          Padding="2 0 0 0"
+                                          HorizontalAlignment="Left" Foreground="Black"/>
+                            </Grid>
+                        </GroupBox>
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="10"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <GroupBox Header="Логин">
+                                <TextBox Text="{Binding Login}"/>
+                            </GroupBox>
+                            <GroupBox Header="Пароль"
+                                      Grid.Column="2">
+                                <TextBox Text="{Binding Password}"/>
+                            </GroupBox>
+                        </Grid>
+
+                        <Button Content="Зарегистрироваться"
+                                Grid.Row="12"
+                                Background="#FF2B2B2B"
+                                Padding="20 4"
+                                Click="BSaveUser_Click"
+                                Style="{StaticResource RoundBtnStyle}"/>
+                    </Grid>
+                </Grid>
+            </Grid>
         </Grid>
     </Grid>
 </Page>

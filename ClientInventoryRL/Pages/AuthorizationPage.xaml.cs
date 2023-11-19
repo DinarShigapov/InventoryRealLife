@@ -25,6 +25,10 @@ namespace ClientInventoryRL.Pages
         public AuthorizationPage()
         {
             InitializeComponent();
+
+
+
+
             contextUser = new User();
             DataContext = contextUser;
         }
@@ -54,9 +58,5 @@ namespace ClientInventoryRL.Pages
             NavigationService.Navigate(new ForgotPasswordPage());
         }
 
-        private void Image_IsMouseCapturedChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-
-        }
     }
 }

@@ -11,24 +11,10 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
-            <RowDefinition Height="10"/>
             <RowDefinition/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <Grid>
-            <Rectangle Fill="#FF636554"/>
-            <Image Source="/Resources/background.png" 
-                Stretch="UniformToFill" 
-                Opacity="0.06" />
-        </Grid>
-        <Grid Grid.Row="1"
-              Grid.RowSpan="2">
-            <Rectangle Fill="#FF323329"/>
-            <Image Source="/Resources/background.png" 
-                Stretch="UniformToFill" 
-                Opacity="0.06" />
-        </Grid>
-        <Grid Margin="20 0">
+        <Grid Background="#FF2B2B2B">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition/>
@@ -38,9 +24,10 @@
                        VerticalAlignment="Center"
                        Foreground="#E3E1DE"
                        FontSize="20"
+                       Padding="20 5"
                        Style="{StaticResource TextBlockFont}"/>
         </Grid>
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="1" Background="#FF484848">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="10"/>
@@ -142,32 +129,30 @@
                 </Button>
             </StackPanel>
         </Grid>
-        <Grid Grid.Row="6"
-              VerticalAlignment="Center">
-            <Grid>
-                <Rectangle Fill="#FF636554"/>
-                <Image Source="/Resources/background.png" 
-                Stretch="UniformToFill" 
-                Opacity="0.06" />
-            </Grid>
-            <Grid HorizontalAlignment="Right"
-                  Margin="10"> 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition Width="10"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Button Content="Сохранить"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Center"
-                        Padding="20 5"/>
-                <Button Content="Назад"
-                        Grid.Column="2"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        Padding="20 5"
-                        Click="Button_Click"/>
-            </Grid>
+        <Grid Background="#FF424242"
+              Grid.Row="3">
+             <Grid HorizontalAlignment="Right"
+                   VerticalAlignment="Center">
+                 <Grid.ColumnDefinitions>
+                     <ColumnDefinition/>
+                     <ColumnDefinition Width="10"/>
+                     <ColumnDefinition/>
+                 </Grid.ColumnDefinitions>
+                 <Button Content="Сохранить"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Center"
+                         Padding="20 5"
+                         Background="#FFAD2E24"
+                         Style="{StaticResource RoundBtnStyle}"/>
+                 <Button Content="Назад"
+                     Grid.Column="2"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center"
+                     Padding="20 5"
+                     Background="#FF2B2B2B"
+                     Style="{StaticResource RoundBtnStyle}"
+                     Click="Button_Click"/>
+             </Grid>
         </Grid>
     </Grid>
 </Page>

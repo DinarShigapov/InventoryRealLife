@@ -217,7 +217,6 @@ namespace ClientInventoryRL.Model
                 var view = (CollectionView)CollectionViewSource.GetDefaultView(Slot.OrderBy(x => x.InventorySlotModifiers.TypeModifiresId));
                 PropertyGroupDescription groupDescription = new PropertyGroupDescription("InventorySlotModifiers.TypeModifires.Name");
                 view.GroupDescriptions.Add(groupDescription);
-
                 return view;
             }
         }
