@@ -37,7 +37,7 @@ namespace ClientInventoryRL.Windows
             }
 
 
-            this.DataContext = listAccessItem.ToList();
+            this.DataContext = App.DB.Item.ToList();
         }
 
         private void ListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -48,7 +48,7 @@ namespace ClientInventoryRL.Windows
                 return;
             }
 
-            if (selectedItem.Weight > contextSlot.InventorySlotModifiers.MaxCapacity) 
+            if (selectedItem.Weight > contextSlot.InventorySlotModifiers.MaxCapacity)
             {
                 MessageBox.Show("Данный предмет превышает максимальный вес слота");
                 return;

@@ -100,7 +100,7 @@ namespace ClientInventoryRL.Services
                             MessageBox.Show("Данный предмет превышает максимальный вес слота");
                             return;
                         }
-
+                        
                         Slot bufferSlot = dropInfo.Data as Slot;
                         (dropInfo.TargetItem as Slot).Item = bufferSlot.Item;
                         (dropInfo.TargetItem as Slot).QuantityItem = bufferSlot.QuantityItem;

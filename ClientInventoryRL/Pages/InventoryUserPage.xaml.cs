@@ -25,6 +25,7 @@ namespace ClientInventoryRL.Pages
     /// </summary>
     public partial class InventoryUserPage : Page
     {
+
         public InventoryUserPage()
         {
             InitializeComponent();

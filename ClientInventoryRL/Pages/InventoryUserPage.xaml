@@ -81,7 +81,7 @@
                                FontFamily="Bahnschrift Light" 
                                FontSize="20"
                                VerticalAlignment="Bottom" />
-                    <Button Content="SAVE" Click="Button_Click"/>
+                    <Button Content="SAVE" Click="Button_Click" Visibility="Hidden"/>
                 </StackPanel>
                 <ListBox ItemsSource="{Binding CurrentInventory.CollectionSlots}"
                          Grid.Row="2"

@@ -16,7 +16,7 @@ namespace ClientInventoryRL.Model
     {
     
     
-    #region Implement INotifyPropertyChanged
+    #region Implement 
      
     public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
     public void OnPropertyChanged([System.Runtime.CompilerServices.CallerMemberName]string prop = "")
