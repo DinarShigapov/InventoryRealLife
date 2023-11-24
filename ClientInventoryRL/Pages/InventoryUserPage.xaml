@@ -411,8 +411,8 @@
                     <TextBlock Text="{Binding CurrentInventory.WarningText}"
                                Foreground="{Binding CurrentInventory.ColorWarningWeight}"
                                Style="{StaticResource TextBlockFont}"
-                               VerticalAlignment="Center"
                                HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
                                FontSize="17"/>
                 </Border>
             </Grid>
